@@ -1,0 +1,27 @@
+{
+  "name": "nvd3-elements",
+  "homepage": "https://github.com/saeidzebardast/nvd3-elements",
+  "authors": [
+    "Saeid Zebardast <saeid.zebardast@gmail.com>"
+  ],
+  "description": "Aggregation component for various nvd3 charts elemenets.",
+  "main": "nvd3-elements.html",
+  "moduleType": [],
+  "keywords": [
+    "polymer",
+    "nvd3",
+    "d3",
+    "chart"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "nvd3-line": "*"
+  }
+}
