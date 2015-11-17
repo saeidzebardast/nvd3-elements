@@ -22,6 +22,6 @@
     "tests"
   ],
   "dependencies": {
-    "nvd3-line": "*"
+    "nvd3-line": "~0.1.0"
   }
 }
