@@ -23,6 +23,7 @@
     "tests"
   ],
   "dependencies": {
-    "nvd3-line": "~0.1.0"
+    "nvd3-line": "~0.1.0",
+    "nvd3-pie": "~0.1.0"
   }
 }
