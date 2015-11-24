@@ -7,6 +7,7 @@ Aggregation component for various nvd3 charts elemenets.
 ```
 <nvd3-line>
 <nvd3-pie>
+<nvd3-scatter>
 ```
 
 ## License

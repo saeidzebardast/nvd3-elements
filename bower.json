@@ -1,6 +1,6 @@
 {
   "name": "nvd3-elements",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/saeidzebardast/nvd3-elements",
   "authors": [
     "Saeid Zebardast <saeid.zebardast@gmail.com>"
@@ -24,6 +24,7 @@
   ],
   "dependencies": {
     "nvd3-line": "~0.1.0",
-    "nvd3-pie": "~0.1.0"
+    "nvd3-pie": "~0.1.0",
+    "nvd3-scatter": "~0.1.0"
   }
 }
