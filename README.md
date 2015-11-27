@@ -2,13 +2,11 @@
 
 Aggregation component for various nvd3 charts elemenets.
 
-## Available elements
-
-```
-<nvd3-line>
-<nvd3-pie>
-<nvd3-scatter>
-```
+## Available charting elements
+* [&lt;nvd3-line&gt;](https://github.com/saeidzebardast/nvd3-line)
+* [&lt;nvd3-pie&gt;](https://github.com/saeidzebardast/nvd3-pie)
+* [&lt;nvd3-scatter&gt;](https://github.com/saeidzebardast/nvd3-scatter)
+* [&lt;nvd3-bullet&gt;](https://github.com/saeidzebardast/nvd3-bullet)
 
 ## License
 
