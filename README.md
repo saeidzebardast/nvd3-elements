@@ -7,6 +7,7 @@ Aggregation component for various nvd3 charts elemenets.
 * [&lt;nvd3-pie&gt;](https://github.com/saeidzebardast/nvd3-pie)
 * [&lt;nvd3-scatter&gt;](https://github.com/saeidzebardast/nvd3-scatter)
 * [&lt;nvd3-bullet&gt;](https://github.com/saeidzebardast/nvd3-bullet)
+* [&lt;nvd3-discrete-bar&gt;](https://github.com/saeidzebardast/nvd3-discrete-bar)
 
 ## License
 
