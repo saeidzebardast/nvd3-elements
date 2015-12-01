@@ -10,6 +10,7 @@ Aggregation component for various nvd3 charts elemenets.
 * [&lt;nvd3-discrete-bar&gt;](https://github.com/saeidzebardast/nvd3-discrete-bar)
 * [&lt;nvd3-stacked-area&gt;](https://github.com/saeidzebardast/nvd3-stacked-area)
 * [&lt;nvd3-multi-bar&gt;](https://github.com/saeidzebardast/nvd3-multi-bar)
+* [&lt;nvd3-multi-bar-horizontal&gt;](https://github.com/saeidzebardast/nvd3-multi-bar-horizontal)
 
 ## License
 
