@@ -1,6 +1,6 @@
 # nvd3-elements
 
-Aggregation component for various nvd3 charts elemenets.
+Aggregation component for various nvd3 charts elements.
 
 ## Available charting elements
 * [&lt;nvd3-line&gt;](https://github.com/saeidzebardast/nvd3-line)
@@ -11,6 +11,7 @@ Aggregation component for various nvd3 charts elemenets.
 * [&lt;nvd3-stacked-area&gt;](https://github.com/saeidzebardast/nvd3-stacked-area)
 * [&lt;nvd3-multi-bar&gt;](https://github.com/saeidzebardast/nvd3-multi-bar)
 * [&lt;nvd3-multi-bar-horizontal&gt;](https://github.com/saeidzebardast/nvd3-multi-bar-horizontal)
+* [&lt;nvd3-cumulative-line&gt;](https://github.com/saeidzebardast/nvd3-cumulative-line)
 
 ## License
 
