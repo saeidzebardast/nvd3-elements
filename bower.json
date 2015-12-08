@@ -14,7 +14,8 @@
     "polymer",
     "nvd3",
     "d3",
-    "chart"
+    "chart",
+    "graph"
   ],
   "license": "MIT",
   "ignore": [
@@ -33,6 +34,7 @@
     "nvd3-stacked-area": "~0.1.0",
     "nvd3-multi-bar": "~0.1.0",
     "nvd3-multi-bar-horizontal": "~0.1.0",
-    "nvd3-cumulative-line": "~0.1.0"
+    "nvd3-cumulative-line": "~0.1.0",
+    "nvd3-donut": "~0.1.0"
   }
 }

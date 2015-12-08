@@ -5,6 +5,7 @@ Aggregation component for various nvd3 charts elements.
 ## Available charting elements
 * [&lt;nvd3-line&gt;](https://github.com/saeidzebardast/nvd3-line)
 * [&lt;nvd3-pie&gt;](https://github.com/saeidzebardast/nvd3-pie)
+* [&lt;nvd3-donut&gt;](https://github.com/saeidzebardast/nvd3-donut)
 * [&lt;nvd3-scatter&gt;](https://github.com/saeidzebardast/nvd3-scatter)
 * [&lt;nvd3-bullet&gt;](https://github.com/saeidzebardast/nvd3-bullet)
 * [&lt;nvd3-discrete-bar&gt;](https://github.com/saeidzebardast/nvd3-discrete-bar)
