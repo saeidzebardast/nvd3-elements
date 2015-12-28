@@ -1,40 +1,16 @@
 {
-  "name": "nvd3-elements",
-  "version": "0.8.0",
-  "homepage": "https://github.com/saeidzebardast/nvd3-elements",
-  "authors": [
-    "Saeid Zebardast <saeid.zebardast@gmail.com>"
-  ],
-  "description": "Aggregation component for various nvd3 charts elements.",
-  "main": "nvd3-elements.html",
-  "moduleType": [],
-  "keywords": [
-    "web-component",
-    "web-components",
-    "polymer",
-    "nvd3",
-    "d3",
-    "chart",
-    "graph"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "name": "polymer-starter-kit",
+  "private": true,
   "dependencies": {
-    "nvd3-line": "^0.3.0",
-    "nvd3-pie": "^0.3.0",
-    "nvd3-scatter": "^0.2.0",
-    "nvd3-bullet": "^0.2.2",
-    "nvd3-discrete-bar": "^0.3.0",
-    "nvd3-stacked-area": "^0.3.0",
-    "nvd3-multi-bar": "^0.3.0",
-    "nvd3-multi-bar-horizontal": "^0.3.0",
-    "nvd3-cumulative-line": "^0.3.0",
-    "nvd3-donut": "^0.3.0"
-  }
+    "iron-elements": "PolymerElements/iron-elements#^1.0.0",
+    "neon-elements": "PolymerElements/neon-elements#^1.0.0",
+    "page": "visionmedia/page.js#~1.6.4",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.1",
+    "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "*"
+  },
+  "ignore": []
 }
