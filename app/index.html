@@ -56,13 +56,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
   <style is="custom-style" include="shared-styles"></style>
-
 </head>
 
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
-
     <paper-drawer-panel id="paperDrawerPanel">
       <!-- Drawer Scroll Header Panel -->
       <paper-scroll-header-panel drawer fixed>
@@ -79,9 +77,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span>Home</span>
           </a>
 
-          <a data-route="demo" href="{{baseUrl}}demo">
-            <iron-icon icon="info"></iron-icon>
-            <span>Demo</span>
+          <a data-route="live-code" href="{{baseUrl}}live-code">
+            <iron-icon icon="visibility"></iron-icon>
+            <span>Live Code</span>
           </a>
         </paper-menu>
       </paper-scroll-header-panel>
@@ -114,20 +112,138 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-material elevation="1">
                 <h2 class="page-title">Chart Elements</h2>
                 <p class="paper-font-subhead">The following elements are available to create a chart:</p>
-                <p>
-                  <ul>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-line">&lt;nvd3-line&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-pie">&lt;nvd3-pie&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-donut">&lt;nvd3-donut&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-scatter">&lt;nvd3-scatter&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-bullet">&lt;nvd3-bullet&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-discrete-bar">&lt;nvd3-discrete-bar&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-stacked-area">&lt;nvd3-stacked-area&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-multi-bar">&lt;nvd3-multi-bar&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-multi-bar-horizontal">&lt;nvd3-multi-bar-horizontal&gt;</a></li>
-                    <li><a href="https://github.com/saeidzebardast/nvd3-cumulative-line">&lt;nvd3-cumulative-line&gt;</a></li>
-                  </ul>
-                </p>
+                <div id="charts" class="layout horizontal justified wrap">
+                  <paper-card heading="&lt;nvd3-line&gt;">
+                    <div class="card-content">
+                      <nvd3-line class="nvd3-chart" data="[[demoData.line]]" stop-auto-drawing></nvd3-line>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-line">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-pie&gt;">
+                    <div class="card-content">
+                      <nvd3-pie class="nvd3-chart" data="[[demoData.pie]]" stop-auto-drawing></nvd3-pie>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-pie">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-donut&gt;">
+                    <div class="card-content">
+                      <nvd3-donut class="nvd3-chart" data="[[demoData.donut]]" stop-auto-drawing></nvd3-donut>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-donut">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-scatter&gt;">
+                    <div class="card-content">
+                      <nvd3-scatter class="nvd3-chart" data="[[demoData.scatter]]" stop-auto-drawing></nvd3-scatter>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-scatter">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-bullet&gt;">
+                    <div class="card-content">
+                      <nvd3-bullet class="nvd3-chart" data="[[demoData.bullet]]" stop-auto-drawing></nvd3-bullet>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-bullet">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-discrete-bar&gt;">
+                    <div class="card-content">
+                      <nvd3-discrete-bar class="nvd3-chart" data="[[demoData.discreteBar]]" stop-auto-drawing></nvd3-discrete-bar>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-discrete-bar">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-stacked-area&gt;">
+                    <div class="card-content">
+                      <nvd3-stacked-area class="nvd3-chart" data="[[demoData.stackedArea]]" stop-auto-drawing></nvd3-stacked-area>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-stacked-area">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-multi-bar&gt;">
+                    <div class="card-content">
+                      <nvd3-multi-bar class="nvd3-chart" data="[[demoData.multiBar]]" stop-auto-drawing></nvd3-multi-bar>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-multi-bar">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-multi-bar-horizontal&gt;">
+                    <div class="card-content">
+                      <nvd3-multi-bar-horizontal class="nvd3-chart" data="[[demoData.multiBarHorizontal]]" stop-auto-drawing></nvd3-multi-bar-horizontal>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-multi-bar-horizontal">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                  <paper-card heading="&lt;nvd3-cumulative-line&gt;">
+                    <div class="card-content">
+                      <nvd3-cumulative-line class="nvd3-chart" data="[[demoData.cumulativeLine]]" stop-auto-drawing></nvd3-cumulative-line>
+                    </div>
+                    <div class="card-actions">
+                      <a href="https://github.com/saeidzebardast/nvd3-cumulative-line">
+                        <paper-button>
+                          <iron-icon icon="code"></iron-icon>
+                          Source
+                        </paper-button>
+                      </a>
+                    </div>
+                  </paper-card>
+                </div>
               </paper-material>
 
               <paper-material elevation="1" class="paper-font-body2">
@@ -136,9 +252,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section data-route="demo">
+            <section data-route="live-code">
               <paper-material elevation="1">
-                <h2 class="page-title">Demo</h2>
+                <h2 class="page-title">Live Code</h2>
                 <p>Under construction</p>
               </paper-material>
             </section>
