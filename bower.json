@@ -17,7 +17,8 @@
     "paper-styles": "PolymerElements/paper-styles#~1.1.1",
     "paper-toast": "PolymerElements/paper-toast#~1.1.1",
     "paper-toolbar": "PolymerElements/paper-toolbar#~1.1.2",
-    "paper-card": "PolymerElements/paper-card#~1.0.8"
+    "paper-card": "PolymerElements/paper-card#~1.0.8",
+    "github-fork-ribbon": "~0.1.0"
   },
   "devDependencies": {
     "web-component-tester": "*"
