@@ -2,6 +2,8 @@
 
 Aggregation component for various nvd3 charts elements.
 
+[![nvd3-elements](https://raw.githubusercontent.com/saeidzebardast/nvd3-elements/master/nvd3-elements.png "nvd3-elements")](http://saeidzebardast.github.io/nvd3-elements)
+
 ## Available charting elements
 * [&lt;nvd3-line&gt;](https://github.com/saeidzebardast/nvd3-line)
 * [&lt;nvd3-pie&gt;](https://github.com/saeidzebardast/nvd3-pie)
