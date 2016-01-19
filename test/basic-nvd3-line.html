@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../nvd3-line.html">
+</head>
+
+<body>
+
+  <!-- You can use the document as a place to set up your fixtures. -->
+  <test-fixture id="nvd3-line-fixture">
+    <template>
+      <nvd3-line stop-auto-drawing></nvd3-line>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('<nvd3-line>', function() {
+      var myEl;
+      setup(function() {
+        myEl = fixture('nvd3-line-fixture');
+      });
+
+      test('height is set', function() {
+        myEl.set('height', 300);
+        assert.equal(myEl.querySelector('div').clientHeight, myEl.height);
+      });
+
+      test('width is set', function() {
+        myEl.set('width', 400);
+        assert.equal(myEl.querySelector('div').clientWidth, myEl.width);
+      });
+
+      test('show legend is false', function() {
+        myEl.set('showLegend', false);
+        assert.isFalse(myEl.chart.showLegend());
+      });
+
+      test('show legend is true', function() {
+        myEl.set('showLegend', true);
+        assert.isTrue(myEl.chart.showLegend());
+      });
+
+      test('useInteractiveGuideline is false', function() {
+        myEl.set('useInteractiveGuideline', false);
+        assert.isFalse(myEl.chart.useInteractiveGuideline());
+      });
+
+      test('useInteractiveGuideline is true', function() {
+        myEl.set('useInteractiveGuideline', true);
+        assert.isTrue(myEl.chart.useInteractiveGuideline());
+      });
+
+      test('marging is set', function() {
+        myEl.set('margin', {
+          "top": 10,
+          "right": 20,
+          "bottom": 30,
+          "left": 40
+        });
+
+        assert.equal(myEl.chart.margin().top, myEl.margin.top);
+        assert.equal(myEl.chart.margin().right, myEl.margin.right);
+        assert.equal(myEl.chart.margin().bottom, myEl.margin.bottom);
+        assert.equal(myEl.chart.margin().left, myEl.margin.left);
+      });
+
+      test('distributed children', function() {
+        var els = myEl.getContentChildren();
+        assert.equal(els.length, 0, 'no distributed node');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

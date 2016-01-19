@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../nvd3-behavior.html">
+  <link rel="import" href="simple-chart.html">
+</head>
+
+<body>
+
+  <test-fixture id="simple-chart-fixture">
+    <template>
+      <simple-chart></simple-chart>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('nvd3-behavior', function() {
+      var myEl;
+      setup(function() {
+        myEl = fixture('simple-chart-fixture');
+      });
+
+      test('stopAutoDrawing is false by default', function() {
+        assert.isFalse(myEl.autoResize);
+      });
+
+      test('set stopAutoDrawing true', function() {
+        assert.isFalse(myEl.stopAutoDrawing);
+        myEl.stopAutoDrawing = true;
+        assert.isTrue(myEl.stopAutoDrawing);
+      });
+
+      test('autoResize is false by default', function() {
+        assert.isFalse(myEl.autoResize);
+      });
+
+      test('set autoResize true', function() {
+        assert.isFalse(myEl.autoResize);
+        myEl.autoResize = true;
+        assert.isTrue(myEl.autoResize);
+      });
+    });
+  </script>
+
+</body>
+
+</html>

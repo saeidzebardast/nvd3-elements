@@ -1,0 +1,65 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-import.html">
+
+<style is="custom-style" include="nvd3-shared-styles"></style>
+
+<script>
+  var NVD3 = NVD3 || {};
+
+  /** @polymerBehavior NVD3.ChartBehavior */
+  NVD3.ChartBehavior = {
+    properties: {
+      /*
+       * Data
+       */
+      data: {
+        type: Array
+      },
+
+      /*
+       * SVG object for d3
+       */
+      svg: {
+        type: Object
+      },
+
+      /**
+       * Stop auto drawing the chart on attaching the element.
+       */
+      stopAutoDrawing: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Auto resize chart after resizing browser window.
+       */
+      autoResize: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    /**
+     * Generate and attach the chart;
+     */
+    generateChart: function() {
+      var chart = this.chart;
+      var data = this.data;
+      var svg = this.svg;
+      var autoResize = this.autoResize;
+
+      nv.addGraph(function() {
+        d3.select(svg)
+          .datum(data)
+          .call(chart);
+
+        if (autoResize) {
+          nv.utils.windowResize(chart.update);
+        }
+
+        return chart;
+      });
+    }
+  };
+</script>

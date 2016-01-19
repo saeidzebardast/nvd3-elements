@@ -1,0 +1,241 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create line chart using nvd3.
+
+Example:
+
+    <nvd3-line
+      data="[[data]]"
+      height="100"
+      width="400"
+      auto-resize
+      show-legend
+      use-interactive-guideline>
+    </nvd3-line>
+
+Data Format:
+```
+[
+  {
+    "key": "Sine Wave",
+    "color": "#ff7f0e",
+    "values": [{
+      "x": 0,
+      "y": 0
+    }, {
+      "x": 1,
+      "y": 0.09983341664682815
+    }, {
+      "x": 2,
+      "y": 0.19866933079506122
+    }, {
+      "x": 3,
+      "y": 0.29552020666133955
+    }, {
+      "x": 4,
+      "y": 0.3894183423086505
+    }, {
+      "x": 5,
+      "y": 0.479425538604203
+    }]
+  }, {
+    "key": "Cosine Wave",
+    "color": "#2ca02c",
+    "values": [{
+      "x": 0,
+      "y": 0.5
+    }, {
+      "x": 1,
+      "y": 0.49750208263901285
+    }, {
+      "x": 2,
+      "y": 0.4900332889206208
+    }, {
+      "x": 3,
+      "y": 0.477668244562803
+    }, {
+      "x": 4,
+      "y": 0.46053049700144255
+    }, {
+      "x": 5,
+      "y": 0.4387912809451864
+    }]
+  }
+]
+```
+
+@group NVD3 Elements
+@element nvd3-line
+@demo demo/nvd3-line.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-line">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-line',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        chart: {
+          type: Object,
+          value: function() {
+            return nv.models.lineChart();
+          }
+        },
+
+        /**
+         * Colors to use for the different data.
+         * If an array is given, it is converted to a function automatically.
+         */
+        color: {
+          type: Array,
+          value: function() {
+            nv.utils.defaultColor();
+          }
+        },
+
+        /**
+         * The height the graph or component created inside the SVG should be made.
+         * Default: The height of the container element (normally the svg itself).
+         */
+        height: {
+          type: Number
+        },
+
+        /**
+         * Object containing the margins for the chart or component.
+         * You can specify only certain margins in the object to change just
+         * those parts.
+         */
+        margin: {
+          type: Object,
+          value: {
+            "left": null,
+            "right": null,
+            "top": null,
+            "bottom": null
+          }
+        },
+
+        /**
+         * Message to display if no data is provided.
+         */
+        noData: {
+          type: String,
+          value: 'No Data Available.'
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Sets the chart to use a guideline and floating tooltip instead of
+         * requiring the user to hover over specific hotspots.
+         */
+        useInteractiveGuideline: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * The width the graph or component created inside the SVG should be made.
+         * Default: The width of the container element (normally the svg itself).
+         */
+        width: {
+          type: Number
+        }
+      },
+
+      observers: [
+        '_setColor(color.length)',
+        '_setHeight(height)',
+        '_setMargin(margin.top, margin.right, margin.bottom, margin.left)',
+        '_setNoData(noData)',
+        '_setShowLegend(showLegend)',
+        '_setUseInteractiveGuideline(useInteractiveGuideline)',
+        '_setWidth(width)'
+      ],
+
+      _setColor: function(colorLength) {
+        this.chart.color(this.color);
+      },
+
+      _setHeight: function(height) {
+        if (typeof height === 'number' && height > 0) {
+          this.$$('div').style.height = height + 'px';
+        }
+      },
+
+      _setMargin: function(marginTop, marginRight, marginBottom, marginLeft) {
+        if (marginTop) {
+          this.chart.margin({
+            "top": marginTop
+          });
+        }
+
+        if (marginRight) {
+          this.chart.margin({
+            "right": marginRight
+          });
+        }
+
+        if (marginBottom) {
+          this.chart.margin({
+            "bottom": marginBottom
+          });
+        }
+
+        if (marginLeft) {
+          this.chart.margin({
+            "left": marginLeft
+          });
+        }
+      },
+
+      _setNoData: function(noData) {
+        this.chart.noData(this.noData);
+      },
+
+      _setShowLegend: function(showLegend) {
+        this.chart.showLegend(this.showLegend);
+      },
+
+      _setUseInteractiveGuideline: function(useInteractiveGuideline) {
+        this.chart.useInteractiveGuideline(this.useInteractiveGuideline);
+      },
+
+      _setWidth: function(width) {
+        if (typeof width === 'number' && width > 0) {
+          this.$$('div').style.width = width + 'px';
+        }
+      },
+
+      ready: function() {
+        this.set('svg', this.$$('svg'));
+      },
+
+      attached: function() {
+        if (!this.stopAutoDrawing) {
+          this.generateChart();
+        }
+      }
+    });
+  </script>
+</dom-module>

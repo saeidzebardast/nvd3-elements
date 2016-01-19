@@ -5,7 +5,7 @@
   "authors": [
     "Saeid Zebardast <saeid.zebardast@gmail.com>"
   ],
-  "description": "Aggregation component for various nvd3 charts elements.",
+  "description": "NVD3 charts elements for Polymer.",
   "main": "nvd3-elements.html",
   "moduleType": [],
   "keywords": [
@@ -26,7 +26,6 @@
     "tests"
   ],
   "dependencies": {
-    "nvd3-line": "^0.4.0",
     "nvd3-pie": "^0.4.0",
     "nvd3-scatter": "^0.3.0",
     "nvd3-bullet": "^0.3.0",
