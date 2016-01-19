@@ -6,7 +6,9 @@
 <script>
   var NVD3 = NVD3 || {};
 
-  /** @polymerBehavior NVD3.ChartBehavior */
+  /**
+   * @polymerBehavior NVD3.ChartBehavior
+   */
   NVD3.ChartBehavior = {
     properties: {
       /*
@@ -37,14 +39,148 @@
       autoResize: {
         type: Boolean,
         value: false
+      },
+
+      /**
+       * Colors to use for the different data.
+       * If an array is given, it is converted to a function automatically.
+       */
+      color: {
+        type: Array,
+        value: function() {
+          nv.utils.defaultColor();
+        }
+      },
+
+      /**
+       * The height the graph or component created inside the SVG should be made.
+       * Default: The height of the container element (normally the svg itself).
+       */
+      height: {
+        type: Number
+      },
+
+      /**
+       * Object containing the margins for the chart or component.
+       * You can specify only certain margins in the object to change just
+       * those parts.
+       */
+      margin: {
+        type: Object,
+        value: {
+          "left": null,
+          "right": null,
+          "top": null,
+          "bottom": null
+        }
+      },
+
+      /**
+       * Message to display if no data is provided.
+       */
+      noData: {
+        type: String
+      },
+
+      /**
+       * The width the graph or component created inside the SVG should be made.
+       * Default: The width of the container element (normally the svg itself).
+       */
+      width: {
+        type: Number
       }
+    },
+
+    observers: [
+      '_setColor(color.length)',
+      '_setHeight(height)',
+      '_setMargin(margin.top, margin.right, margin.bottom, margin.left)',
+      '_setNoData(noData)',
+      '_setWidth(width)',
+      '_setShowLegend(showLegend)',
+      '_setUseInteractiveGuideline(useInteractiveGuideline)'
+    ],
+
+    /**
+     * Observer for setting color.
+     */
+    _setColor: function(colorLength) {
+      this._chart.color(this.color);
+    },
+
+    /**
+     * Observer for setting height.
+     */
+    _setHeight: function(height) {
+      if (typeof height === 'number' && height > 0) {
+        this.$$('div').style.height = height + 'px';
+      }
+    },
+
+    /**
+     * Observer for setting margins.
+     */
+    _setMargin: function(marginTop, marginRight, marginBottom, marginLeft) {
+      if (marginTop) {
+        this._chart.margin({
+          "top": marginTop
+        });
+      }
+
+      if (marginRight) {
+        this._chart.margin({
+          "right": marginRight
+        });
+      }
+
+      if (marginBottom) {
+        this._chart.margin({
+          "bottom": marginBottom
+        });
+      }
+
+      if (marginLeft) {
+        this._chart.margin({
+          "left": marginLeft
+        });
+      }
+    },
+
+    /**
+     * Observer for setting text of no data.
+     */
+    _setNoData: function(noData) {
+      this._chart.noData(noData);
+    },
+
+    /**
+     * Observer for setting width.
+     */
+    _setWidth: function(width) {
+      if (typeof width === 'number' && width > 0) {
+        this.$$('div').style.width = width + 'px';
+      }
+    },
+
+    /**
+     * Observer for setting show legend.
+     */
+    _setShowLegend: function(showLegend) {
+      this._chart.showLegend(this.showLegend);
+    },
+
+    /**
+     * Observer for setting use interactive guideline.
+     */
+    _setUseInteractiveGuideline: function(useInteractiveGuideline) {
+      this._chart.useInteractiveGuideline(this.useInteractiveGuideline);
     },
 
     /**
      * Generate and attach the chart;
      */
     generateChart: function() {
-      var chart = this.chart;
+      var chart = this._chart;
       var data = this.data;
       var svg = this.svg;
       var autoResize = this.autoResize;

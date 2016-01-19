@@ -49,22 +49,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       test('show legend is false', function() {
         myEl.set('showLegend', false);
-        assert.isFalse(myEl.chart.showLegend());
+        assert.isFalse(myEl._chart.showLegend());
       });
 
       test('show legend is true', function() {
         myEl.set('showLegend', true);
-        assert.isTrue(myEl.chart.showLegend());
+        assert.isTrue(myEl._chart.showLegend());
       });
 
       test('useInteractiveGuideline is false', function() {
         myEl.set('useInteractiveGuideline', false);
-        assert.isFalse(myEl.chart.useInteractiveGuideline());
+        assert.isFalse(myEl._chart.useInteractiveGuideline());
       });
 
       test('useInteractiveGuideline is true', function() {
         myEl.set('useInteractiveGuideline', true);
-        assert.isTrue(myEl.chart.useInteractiveGuideline());
+        assert.isTrue(myEl._chart.useInteractiveGuideline());
       });
 
       test('marging is set', function() {
@@ -75,10 +75,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           "left": 40
         });
 
-        assert.equal(myEl.chart.margin().top, myEl.margin.top);
-        assert.equal(myEl.chart.margin().right, myEl.margin.right);
-        assert.equal(myEl.chart.margin().bottom, myEl.margin.bottom);
-        assert.equal(myEl.chart.margin().left, myEl.margin.left);
+        assert.equal(myEl._chart.margin().top, myEl.margin.top);
+        assert.equal(myEl._chart.margin().right, myEl.margin.right);
+        assert.equal(myEl._chart.margin().bottom, myEl.margin.bottom);
+        assert.equal(myEl._chart.margin().left, myEl.margin.left);
       });
 
       test('distributed children', function() {
