@@ -15,21 +15,19 @@
   <p>An example of
     <code>&lt;nvd3-bullet&gt;</code>:</p>
 
-  <nvd3-bullet auto-resize stop-auto-drawing>
+  <nvd3-bullet auto-resize>
 
   </nvd3-bullet>
 
   <script>
     var el = document.querySelector('nvd3-bullet');
-    el.set('data', {
+    el.data = {
       "title": "Revenue",
       "subtitle": "US$, in thousands",
       "ranges": [150, 225, 300],
       "measures": [220],
       "markers": [250]
-    });
-
-    el.generateChart();
+    };
   </script>
 
 </body>

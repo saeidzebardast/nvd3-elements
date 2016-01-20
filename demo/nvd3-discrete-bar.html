@@ -21,7 +21,7 @@
 
   <script>
     var el = document.querySelector('nvd3-discrete-bar');
-    el.set('data', [{
+    el.data = [{
         key: "Cumulative Return",
         values: [{
           "label": "A",
@@ -48,8 +48,7 @@
           "label": "H",
           "value": -5.1387322875705
         }]
-      }]
-    );
+      }];
   </script>
 </body>
 </html>
