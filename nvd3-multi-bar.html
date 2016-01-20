@@ -1,0 +1,105 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create multi bar chart using nvd3.
+
+Example:
+
+    <nvd3-multi-bar
+    data="[[data]]"
+    height="100"
+    width="400"
+    auto-resize
+    show-legend></nvd3-multi-bar>
+
+Data Format:
+```
+[{
+  "key": "Stream0",
+  "values": [{
+    "x": 0,
+    "y": 0.17657645842991837
+  }, {
+    "x": 1,
+    "y": 0.17056295930152043
+  }, {
+    "x": 2,
+    "y": 0.1673443365488047
+  }, {
+    "x": 3,
+    "y": 0.11723298445616456
+  }]
+}, {
+  "key": "Stream1",
+  "values": [{
+    "x": 0,
+    "y": 1.2743446048854001
+  }, {
+    "x": 1,
+    "y": 0.22290307978708743
+  }, {
+    "x": 2,
+    "y": 0.11314237776897834
+  }, {
+    "x": 3,
+    "y": 0.13269772172547029
+  }]
+}, {
+  "key": "Stream2",
+  "values": [{
+    "x": 0,
+    "y": 4.56961163175497
+  }, {
+    "x": 1,
+    "y": 0.6716892057759072
+  }, {
+    "x": 2,
+    "y": 0.1281580516020834
+  }, {
+    "x": 3,
+    "y": 0.1961314488771337
+  }]
+}]
+```
+
+@group NVD3 Elements
+@element nvd3-multi-bar
+@demo demo/nvd3-multi-bar.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-multi-bar">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-multi-bar',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            return nv.models.multiBarChart();
+          }
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        }
+      }
+    });
+  </script>
+</dom-module>

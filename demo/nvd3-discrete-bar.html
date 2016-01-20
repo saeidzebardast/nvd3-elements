@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>nvd3-discrete-bar Demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../nvd3-discrete-bar.html">
+</head>
+
+<body unresolved>
+
+  <p>An example of
+    <code>&lt;nvd3-discrete-bar&gt;</code>:</p>
+
+  <nvd3-discrete-bar height="400" auto-resize>
+
+  </nvd3-discrete-bar>
+
+  <script>
+    var el = document.querySelector('nvd3-discrete-bar');
+    el.set('data', [{
+        key: "Cumulative Return",
+        values: [{
+          "label": "A",
+          "value": -29.765957771107
+        }, {
+          "label": "B",
+          "value": 0
+        }, {
+          "label": "C",
+          "value": 32.807804682612
+        }, {
+          "label": "D",
+          "value": 196.45946739256
+        }, {
+          "label": "E",
+          "value": 0.19434030906893
+        }, {
+          "label": "F",
+          "value": -98.079782601442
+        }, {
+          "label": "G",
+          "value": -13.925743130903
+        }, {
+          "label": "H",
+          "value": -5.1387322875705
+        }]
+      }]
+    );
+  </script>
+</body>
+</html>

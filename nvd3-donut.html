@@ -1,0 +1,104 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create donut chart using nvd3.
+
+Example:
+
+    <nvd3-donut
+    data="[[data]]"
+    height="300"
+    width="400"
+    auto-resize
+    show-legend
+    donut-ratio="0.25"></nvd3-donut>
+
+Data Format:
+```
+[
+  {
+    "label": "label 1",
+    "value": 69
+  },
+  {
+    "label": "label 2",
+    "value": 85
+  }
+]
+```
+
+@group NVD3 Elements
+@element nvd3-donut
+@demo demo/nvd3-donut.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-donut">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-donut',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            return nv.models.pieChart()
+              .x(function(d) {
+                return d.label
+              })
+              .y(function(d) {
+                return d.value
+              })
+              .donut(true);
+          }
+        },
+
+        /**
+         * Configure how big you want the donut hole size to be.
+         */
+        donutRatio: {
+          type: Number,
+          value: 0.5
+        },
+
+        /**
+         * Show labels for each slice
+         */
+        showLabels: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        }
+      },
+
+      observers: [
+        '_setDonutRatio(donutRatio)'
+      ],
+
+      /**
+       * Observer for setting donut ratio.
+       */
+      _setDonutRatio: function(donutRatio) {
+        this._chart.donutRatio(this.donutRatio);
+      }
+    });
+  </script>
+</dom-module>

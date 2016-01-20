@@ -97,6 +97,7 @@
       '_setMargin(margin.top, margin.right, margin.bottom, margin.left)',
       '_setNoData(noData)',
       '_setWidth(width)',
+      '_setShowLabels(showLabels)',
       '_setShowLegend(showLegend)',
       '_setUseInteractiveGuideline(useInteractiveGuideline)'
     ],
@@ -154,12 +155,10 @@
     },
 
     /**
-     * Observer for setting width.
+     * Observer for setting show labels.
      */
-    _setWidth: function(width) {
-      if (typeof width === 'number' && width > 0) {
-        this.$$('div').style.width = width + 'px';
-      }
+    _setShowLabels: function(showLabels) {
+      this._chart.showLabels(showLabels);
     },
 
     /**
@@ -167,6 +166,15 @@
      */
     _setShowLegend: function(showLegend) {
       this._chart.showLegend(this.showLegend);
+    },
+
+    /**
+     * Observer for setting width.
+     */
+    _setWidth: function(width) {
+      if (typeof width === 'number' && width > 0) {
+        this.$$('div').style.width = width + 'px';
+      }
     },
 
     /**
@@ -196,6 +204,16 @@
 
         return chart;
       });
+    },
+
+    ready: function() {
+      this.set('svg', this.$$('svg'));
+    },
+
+    attached: function() {
+      if (!this.stopAutoDrawing) {
+        this.generateChart();
+      }
     }
   };
 </script>

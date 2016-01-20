@@ -110,16 +110,6 @@ Data Format:
           type: Boolean,
           value: false
         }
-      },
-
-      ready: function() {
-        this.set('svg', this.$$('svg'));
-      },
-
-      attached: function() {
-        if (!this.stopAutoDrawing) {
-          this.generateChart();
-        }
       }
     });
   </script>

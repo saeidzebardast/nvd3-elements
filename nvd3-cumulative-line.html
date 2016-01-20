@@ -1,0 +1,116 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create cumulative line chart using nvd3.
+
+Example:
+
+    <nvd3-cumulative-line
+    data="[[data]]"
+    height="100"
+    width="400"
+    auto-resize
+    show-legend
+    use-interactive-guideline></nvd3-cumulative-line>
+
+Data Format:
+```
+[
+  {
+    "key": "North America",
+    "values": [
+      [1, 23.041422681023],
+      [2, 19.854291255832],
+      [3, 21.02286281168],
+      [4, 22.093608385173]
+    ]
+  },
+
+  {
+    "key": "Africa",
+    "values": [
+      [1, 7.9356392949025],
+      [2, 7.4514668527298],
+      [3, 7.9085410566608],
+      [4, 5.8996782364764]
+    ]
+  },
+
+  {
+    "key": "Asia",
+    "values": [
+      [1, 13.153938631352],
+      [2, 12.456410521864],
+      [3, 12.537048663919],
+      [4, 13.947386398309]
+    ]
+  },
+
+  {
+    "key": "Europe",
+    "values": [
+      [1, 9.3433263069351],
+      [2, 8.4583069475546],
+      [3, 8.0342398154196],
+      [4, 8.1538966876572]
+    ]
+  }
+]
+```
+
+@group NVD3 Elements
+@element nvd3-cumulative-line
+@demo demo/nvd3-cumulative-line.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-cumulative-line">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-cumulative-line',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            return nv.models.cumulativeLineChart()
+              .x(function(d) {
+                return d[0]
+              })
+              .y(function(d) {
+                return d[1]
+              });
+          }
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Sets the chart to use a guideline and floating tooltip instead of
+         * requiring the user to hover over specific hotspots.
+         */
+        useInteractiveGuideline: {
+          type: Boolean,
+          value: false
+        }
+      }
+    });
+  </script>
+</dom-module>

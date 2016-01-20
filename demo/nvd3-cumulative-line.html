@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>nvd3-cumulative-line Demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../nvd3-cumulative-line.html">
+</head>
+
+<body unresolved>
+
+  <p>An example of
+    <code>&lt;nvd3-cumulative-line&gt;</code>:</p>
+
+  <nvd3-cumulative-line auto-resize show-legend use-interactive-guideline>
+
+  </nvd3-cumulative-line>
+
+  <script>
+    var el = document.querySelector('nvd3-cumulative-line');
+    el.set('data', [{
+        "key": "North America",
+        "values": [
+          [1, 23.041422681023],
+          [2, 19.854291255832],
+          [3, 21.02286281168],
+          [4, 22.093608385173]
+        ]
+      },
+
+      {
+        "key": "Africa",
+        "values": [
+          [1, 7.9356392949025],
+          [2, 7.4514668527298],
+          [3, 7.9085410566608],
+          [4, 5.8996782364764]
+        ]
+      },
+
+      {
+        "key": "Asia",
+        "values": [
+          [1, 13.153938631352],
+          [2, 12.456410521864],
+          [3, 12.537048663919],
+          [4, 13.947386398309]
+        ]
+      },
+
+      {
+        "key": "Europe",
+        "values": [
+          [1, 9.3433263069351],
+          [2, 8.4583069475546],
+          [3, 8.0342398154196],
+          [4, 8.1538966876572]
+        ]
+      }
+    ]);
+  </script>
+</body>
+
+</html>
