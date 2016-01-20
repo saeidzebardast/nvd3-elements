@@ -26,14 +26,13 @@
     "tests"
   ],
   "dependencies": {
-    "nvd3-pie": "^0.4.0",
-    "nvd3-scatter": "^0.3.0",
-    "nvd3-bullet": "^0.3.0",
-    "nvd3-discrete-bar": "^0.4.0",
-    "nvd3-stacked-area": "^0.4.0",
-    "nvd3-multi-bar": "^0.4.0",
-    "nvd3-multi-bar-horizontal": "^0.4.0",
-    "nvd3-cumulative-line": "^0.4.0",
-    "nvd3-donut": "^0.4.0"
+    "nvd3": "~1.8.1",
+    "polymer": "^1.2.0"
+  },
+  "devDependencies": {
+    "github-fork-ribbon": "^0.2.3",
+    "iron-component-page": "PolymerElements/iron-component-page#~1.1.4",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   }
 }
