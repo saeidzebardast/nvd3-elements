@@ -15,6 +15,7 @@ NVD3 charts as web components for Polymer.
 * &lt;nvd3-multi-bar&gt;
 * &lt;nvd3-multi-bar-horizontal&gt;
 * &lt;nvd3-cumulative-line&gt;
+* &lt;nvd3-sunburst&gt;
 
 ## Demo and Options
 See the [component page](http://saeidzebardast.github.io/nvd3-elements) for demo and options.
