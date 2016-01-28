@@ -91,7 +91,7 @@ Data Format:
         _chart: {
           type: Object,
           value: function() {
-            return  nv.models.lineChart();
+            return nv.models.lineChart();
           }
         },
         /**
@@ -109,6 +109,26 @@ Data Format:
         useInteractiveGuideline: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * Show focus bar. will use lineWithFocusChart() as _chart object.
+         */
+        withFocus: {
+          type: Boolean,
+          value: false,
+          observer: '_withFocusChanged'
+        }
+      },
+
+      /**
+      * Set chart base on withFocus.
+      */
+      _withFocusChanged: function(newVal) {
+        if (newVal) {
+          this.set('_chart', nv.models.lineWithFocusChart());
+        } else {
+          this.set('_chart', nv.models.lineChart());
         }
       }
     });
