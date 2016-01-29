@@ -2,18 +2,18 @@
 <link rel="import" href="nvd3-behavior.html">
 
 <!--
-An element to create line chart using nvd3.
+An element to create line with focus chart using nvd3.
 
 Example:
 
-    <nvd3-line
+    <nvd3-line-with-focus
       data="[[data]]"
       height="100"
       width="400"
       auto-resize
       show-legend
       use-interactive-guideline>
-    </nvd3-line>
+    </nvd3-line-with-focus>
 
 Data Format:
 ```
@@ -67,12 +67,12 @@ Data Format:
 ```
 
 @group NVD3 Elements
-@element nvd3-line
-@demo demo/nvd3-line.html
+@element nvd3-line-with-focus
+@demo demo/nvd3-line-with-focus.html
 @hero hero.svg
 -->
 
-<dom-module id="nvd3-line">
+<dom-module id="nvd3-line-with-focus">
   <template>
     <!-- We need to put svg tag inside a div to set correct margins -->
     <div>
@@ -82,7 +82,7 @@ Data Format:
 
   <script>
     Polymer({
-      is: 'nvd3-line',
+      is: 'nvd3-line-with-focus',
       behaviors: [NVD3.ChartBehavior],
       properties: {
         /**
@@ -91,7 +91,7 @@ Data Format:
         _chart: {
           type: Object,
           value: function() {
-            return nv.models.lineChart();
+            return nv.models.lineWithFocusChart();
           }
         },
         /**

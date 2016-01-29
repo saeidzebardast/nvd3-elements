@@ -6,6 +6,7 @@ NVD3 charts as web components for Polymer.
 
 ## Available charts elements
 * &lt;nvd3-line&gt;
+* &lt;nvd3-line-with-focus&gt;
 * &lt;nvd3-pie&gt;
 * &lt;nvd3-donut&gt;
 * &lt;nvd3-scatter&gt;
