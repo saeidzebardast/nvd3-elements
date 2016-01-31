@@ -72,6 +72,11 @@
         assert.equal(myEl._chart.margin().left, myEl.margin.left);
       });
 
+      test('brush extent is set', function() {
+        myEl.set('brushExtent', [30, 50]);
+        assert.equal(myEl._chart.brushExtent(), myEl.brushExtent);
+      });
+
       test('distributed children', function() {
         var els = myEl.getContentChildren();
         assert.equal(els.length, 0, 'no distributed node');

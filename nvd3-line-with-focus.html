@@ -10,6 +10,7 @@ Example:
       data="[[data]]"
       height="100"
       width="400"
+      brush-extent='[50,70]'
       auto-resize
       show-legend
       use-interactive-guideline>
@@ -94,6 +95,15 @@ Data Format:
             return nv.models.lineWithFocusChart();
           }
         },
+
+        /**
+         * Extent to the specified values.
+         */
+        brushExtent: {
+          type: Array,
+          observer: '_brushExtentChanged'
+        },
+
         /**
          * Whether to display the legend or not
          */
@@ -110,6 +120,10 @@ Data Format:
           type: Boolean,
           value: false
         }
+      },
+
+      _brushExtentChanged: function() {
+        this._chart.brushExtent(this.brushExtent);
       }
     });
   </script>
