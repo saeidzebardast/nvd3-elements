@@ -99,7 +99,8 @@
       '_setWidth(width)',
       '_setShowLabels(showLabels)',
       '_setShowLegend(showLegend)',
-      '_setUseInteractiveGuideline(useInteractiveGuideline)'
+      '_setUseInteractiveGuideline(useInteractiveGuideline)',
+      '_setGrowOnHover(growOnHover)'
     ],
 
     /**
@@ -182,6 +183,13 @@
      */
     _setUseInteractiveGuideline: function(useInteractiveGuideline) {
       this._chart.useInteractiveGuideline(this.useInteractiveGuideline);
+    },
+
+    /**
+     * Observer for growOnHover.
+     */
+    _setGrowOnHover: function(growOnHover) {
+      this._chart.growOnHover(this.growOnHover);
     },
 
     /**
