@@ -4,6 +4,12 @@ NVD3 charts as web components for Polymer.
 
 [![nvd3-elements](https://raw.githubusercontent.com/saeidzebardast/nvd3-elements/master/nvd3-elements.png "nvd3-elements")](http://saeidzebardast.github.io/nvd3-elements)
 
+## Install
+```
+bower install nvd3-elements
+```
+
+
 ## Available charts elements
 * &lt;nvd3-line&gt;
 * &lt;nvd3-line-with-focus&gt;
