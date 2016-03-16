@@ -94,11 +94,19 @@ Data Format:
         growOnHover: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * Text to include within the middle of a donut chart
+         */
+        title: {
+          type: String
         }
       },
 
       observers: [
-        '_setDonutRatio(donutRatio)'
+        '_setDonutRatio(donutRatio)',
+        '_setTitle(title)'
       ],
 
       /**
@@ -106,6 +114,13 @@ Data Format:
        */
       _setDonutRatio: function(donutRatio) {
         this._chart.donutRatio(this.donutRatio);
+      },
+
+      /**
+       * Observer for setting title.
+       */
+      _setTitle: function(title) {
+        this._chart.title(this.title);
       }
     });
   </script>
