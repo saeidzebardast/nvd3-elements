@@ -216,6 +216,7 @@
       var data = this.data;
       var svg = this.svg;
       var autoResize = this.autoResize;
+      var that = this;
 
       nv.addGraph(function() {
         d3.select(svg)
@@ -226,10 +227,10 @@
           nv.utils.windowResize(chart.update);
         }
 
+        that._set_tooltipId(chart.tooltip.id());
         return chart;
       });
 
-      this._set_tooltipId(chart.tooltip.id());
     },
 
     ready: function() {
