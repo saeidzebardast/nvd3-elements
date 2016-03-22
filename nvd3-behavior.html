@@ -100,7 +100,8 @@
       '_setShowLabels(showLabels)',
       '_setShowLegend(showLegend)',
       '_setUseInteractiveGuideline(useInteractiveGuideline)',
-      '_setGrowOnHover(growOnHover)'
+      '_setGrowOnHover(growOnHover)',
+      '_setDisableTooltip(disableTooltip)'
     ],
 
     /**
@@ -190,6 +191,13 @@
      */
     _setGrowOnHover: function(growOnHover) {
       this._chart.growOnHover(this.growOnHover);
+    },
+
+    /**
+     * Observer for disableTooltip
+     */
+    _setDisableTooltip: function(disableTooltip) {
+      this._chart.tooltip.enabled(!disableTooltip);
     },
 
     /**
