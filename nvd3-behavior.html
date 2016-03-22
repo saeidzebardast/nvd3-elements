@@ -88,6 +88,14 @@
        */
       width: {
         type: Number
+      },
+
+      /**
+       * Holds the id for the tooltip so it can be removed when chart is detached/removed from DOM.
+       */
+      _tooltipId: {
+        type: String,
+        readOnly: true
       }
     },
 
@@ -220,6 +228,8 @@
 
         return chart;
       });
+
+      this._set_tooltipId(chart.tooltip.id());
     },
 
     ready: function() {
@@ -229,6 +239,13 @@
     attached: function() {
       if (!this.stopAutoDrawing) {
         this.generateChart();
+      }
+    },
+
+    detached: function() {
+      var tooltip = document.getElementById(this._tooltipId);
+      if (tooltip) {
+        tooltip.remove();
       }
     }
   };
