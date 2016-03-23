@@ -80,6 +80,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var els = myEl.getContentChildren();
         assert.equal(els.length, 0, 'no distributed node');
       });
+
+      test('disableTooltip is false', function() {
+        myEl.set('disableTooltip', false);
+        assert.isTrue(myEl._chart.tooltip.enabled());
+      });
+
+      test('disableTooltip is true', function() {
+        myEl.set('disableTooltip', true);
+        assert.isFalse(myEl._chart.tooltip.enabled());
+      });
     });
   </script>
 
