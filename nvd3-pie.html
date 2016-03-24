@@ -92,7 +92,71 @@ Data Format:
         disableTooltip: {
           type: Boolean,
           value: false
+        },
+
+        /**
+        * Container for selected slices
+        */
+        selection: {
+          type: Object,
+          value: null,
+          notify: true
+        },
+
+        /**
+        * Whether possible to selected several slices
+        */
+        multiSelection: {
+          type: Boolean,
+          value: false,
+          observer: '_multiSelectionChanged'
         }
+      },
+      /**
+      * Fired when a slice is selected
+      * @event slice-selected
+      */
+
+      observers: [
+        '_selectionChanged(selection.splices)'
+      ],
+
+      ready: function() {
+        this._chart.pie.dispatch.on('elementClick', this._onSliceClick.bind(this));
+      },
+
+      _onSliceClick: function(item) {
+        var previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
+        if (this.multiSelection) {
+          if (this.selection.indexOf(item.data) > -1) {
+            this.splice('selection', this.selection.indexOf(item.data), 1);
+            item.element.classList.remove('selected')
+          } else {
+            this.push('selection', item.data);
+            item.element.classList.add('selected')
+          }
+        } else {
+          this.selection = item.data;
+          if (previousElement !== null) {
+            previousElement.classList.remove('selected');
+            
+          }
+          item.element.classList.add('selected')
+        }
+      },
+
+      /**
+      * Observer for multiSelection
+      */
+      _multiSelectionChanged: function(newValue, oldValue) {
+        this.selection = newValue ? [] : null;
+      },
+
+      /**
+      * Observer for selection
+      */
+      _selectionChanged: function() {
+        this.fire('slice-selected', this.selection);
       }
     });
   </script>
