@@ -35,6 +35,16 @@ Data Format:
 
 <dom-module id="nvd3-pie">
   <template>
+  <style>
+    /* Can't reach svgs children without ::content  */
+    :host ::content svg .nv-slice {
+      transform: scale(1);
+      transition: 0.1s ease-in-out;
+    }
+    :host ::content svg .nv-slice.selected {
+      transform: scale(1.1);
+    }
+  </style>
     <!-- We need to put svg tag inside a div to set correct margins -->
     <div>
       <svg></svg>
@@ -139,7 +149,6 @@ Data Format:
           this.selection = item.data;
           if (previousElement !== null) {
             previousElement.classList.remove('selected');
-            
           }
           item.element.classList.add('selected')
         }

@@ -19,8 +19,14 @@
 
   </nvd3-pie>
 
+  <nvd3-pie id="pie2" height="400" auto-resize show-labels grow-on-hover multi-selection>
+
+  </nvd3-pie>
+
   <script>
     var el = document.querySelector('nvd3-pie');
+    var el2 = document.querySelector('#pie2');
+
     el.data = [{
       "label": "One",
       "value": 29.765957771107
@@ -46,6 +52,24 @@
       "label": "Eight",
       "value": 5.1387322875705
     }];
+
+    el2.data = [{
+      "label": "One",
+      "value": 29.765957771107
+    }, {
+      "label": "Two",
+      "value": 50
+    }, {
+      "label": "Three",
+      "value": 32.807804682612
+    }, {
+      "label": "Four",
+      "value": 196.45946739256
+    }];
+
+    el2.addEventListener('slice-selected', function (e) {
+      console.log(e);
+    });
   </script>
 
 </body>
