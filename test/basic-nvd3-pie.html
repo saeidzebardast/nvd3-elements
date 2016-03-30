@@ -16,8 +16,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
 
   <!-- Step 1: import the element to test -->
+  <link rel="import" href="../nvd3-pie.html">
   <link rel="import" href="../nvd3-pie.html">
 </head>
 
@@ -30,9 +32,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <nvd3-pie id="nvd3-pie-select"></nvd3-pie>
+
   <script>
     suite('<nvd3-pie>', function() {
-      var myEl;
+      var myEl,
+        selectEl = document.querySelector('#nvd3-pie-select');
+
+      selectEl.data = [{
+        "label": "One",
+        "value": 29
+      }];
+
       setup(function() {
         myEl = fixture('nvd3-pie-fixture');
       });
@@ -84,6 +95,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test('distributed children', function() {
         var els = myEl.getContentChildren();
         assert.equal(els.length, 0, 'no distributed node');
+      });
+
+      test('Event slice-selected is fired when slice is clicked', function() {
+        selectEl.addEventListener('slice-selected', function(e) {
+          assert.isTrue(selectEl.data.indexOf(e.detail) > -1);
+        });
+        MockInteractions.tap(selectEl.querySelector('g.nv-slice'));
       });
     });
   </script>
