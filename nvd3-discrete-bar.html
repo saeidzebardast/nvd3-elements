@@ -70,7 +70,23 @@ Data Format:
                 return d[that.yProp];
               });
           }
-        }
+        },
+
+        /**
+         * Configurable x-axis property key
+         */
+        xProp: {
+          type: String,
+          value: 'label'
+        },
+
+        /**
+         * Configurable y-axis property key
+         */
+        yProp: {
+          type: String,
+          value: 'value'
+        },
       }
     });
   </script>
