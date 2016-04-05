@@ -61,12 +61,13 @@ Data Format:
         _chart: {
           type: Object,
           value: function() {
+            var that = this;
             return  nv.models.discreteBarChart()
               .x(function(d) {
-                return d.label
+                return d[that.xProp];
               })
               .y(function(d) {
-                return d.value
+                return d[that.yProp];
               });
           }
         }
