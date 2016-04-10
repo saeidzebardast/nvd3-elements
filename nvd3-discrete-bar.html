@@ -61,15 +61,32 @@ Data Format:
         _chart: {
           type: Object,
           value: function() {
+            var that = this;
             return  nv.models.discreteBarChart()
               .x(function(d) {
-                return d.label
+                return d[that.xProp];
               })
               .y(function(d) {
-                return d.value
+                return d[that.yProp];
               });
           }
-        }
+        },
+
+        /**
+         * Configurable x-axis property key
+         */
+        xProp: {
+          type: String,
+          value: 'label'
+        },
+
+        /**
+         * Configurable y-axis property key
+         */
+        yProp: {
+          type: String,
+          value: 'value'
+        },
       }
     });
   </script>
