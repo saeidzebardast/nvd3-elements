@@ -15,7 +15,7 @@
   <p>An example of
     <code>&lt;nvd3-donut&gt;</code>:</p>
 
-  <nvd3-donut title="My Donut!" height="400" auto-resize show-labels show-legend donut-ratio="0.25" grow-on-hover>
+  <nvd3-donut title="My Donut!" height="400" auto-resize show-labels show-legend donut-ratio="0.25" grow-on-hover labels-outside>
   </nvd3-donut>
 
   <script>
@@ -45,6 +45,10 @@
       "label": "Eight",
       "value": 5.1387322875705
     }];
+
+    el.addEventListener('slice-selected', function (e) {
+      console.log('slice-selected');
+    });
   </script>
 
 </body>

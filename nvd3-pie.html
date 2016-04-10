@@ -122,6 +122,15 @@ Data Format:
         },
 
         /**
+         * Whether the labels should be outside of pie
+         */
+        labelsOutside: {
+          type: Boolean,
+          value: false,
+          observer: '_labelsOutsideChanged'
+        },
+
+        /**
         * Container for selected slices
         */
         selection: {
@@ -150,6 +159,13 @@ Data Format:
 
       ready: function() {
         this._chart.pie.dispatch.on('elementClick', this._onSliceClick.bind(this));
+      },
+
+      /**
+       * Observer for labelsOutside
+       */
+      _labelsOutsideChanged: function () {
+        this._chart.labelsOutside(this.labelsOutside);
       },
 
       _onSliceClick: function(item) {
