@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="nvd3-import.html">
 
 <style is="custom-style" include="nvd3-shared-styles"></style>
@@ -9,13 +10,15 @@
   /**
    * @polymerBehavior NVD3.ChartBehavior
    */
-  NVD3.ChartBehavior = {
+  NVD3.ChartBehaviorImpl = {
     properties: {
       /*
        * Data
        */
       data: {
-        type: Array
+        type: Array,
+        value: [],
+        observer: '_dataChanged'
       },
 
       /*
@@ -111,6 +114,18 @@
       '_setGrowOnHover(growOnHover)',
       '_setDisableTooltip(disableTooltip)'
     ],
+
+    listeners: {
+      'iron-resize': '_onResize'
+    },
+
+    _onResize: function () {
+      if (this.autoResize) {
+        this.debounce('autoResize', function () {
+          this.refresh();
+        }.bind(this), 200);
+      }
+    },
 
     /**
      * Observer for setting color.
@@ -208,6 +223,19 @@
       this._chart.tooltip.enabled(!disableTooltip);
     },
 
+    _dataChanged: function () {
+      if (this._chart) {
+        d3.select(this.svg).datum(this.data);
+        this.refresh();
+      }
+    },
+
+    refresh: function () {
+      if (this._chart.update) {
+        this._chart.update();
+      }
+    },
+
     /**
      * Generate and attach the chart;
      */
@@ -250,4 +278,8 @@
       }
     }
   };
+  NVD3.ChartBehavior = [
+    NVD3.ChartBehaviorImpl,
+    Polymer.IronResizableBehavior
+  ];
 </script>
