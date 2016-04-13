@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="nvd3-import.html">
 
 <style is="custom-style" include="nvd3-shared-styles"></style>
@@ -9,13 +10,15 @@
   /**
    * @polymerBehavior NVD3.ChartBehavior
    */
-  NVD3.ChartBehavior = {
+  NVD3.ChartBehaviorImpl = {
     properties: {
       /*
        * Data
        */
       data: {
-        type: Array
+        type: Array,
+        value: [],
+        observer: '_dataChanged'
       },
 
       /*
@@ -91,26 +94,73 @@
       },
 
       /**
+       * View box height
+       */
+      viewBoxHeight: {
+        type: Number,
+        value: 100
+      },
+
+      /**
+       * View box width
+       */
+      viewBoxWidth: {
+        type: Number,
+        value: 100
+      },
+
+      /**
+       * Extra width for view box so labels don't get cut off
+       */
+      extraViewBoxWidth: {
+        type: Number,
+        value: 50
+      },
+
+      /**
        * Holds the id for the tooltip so it can be removed when chart is detached/removed from DOM.
        */
       _tooltipId: {
         type: String,
         readOnly: true
+      },
+
+      /**
+       * Make use of viewBox for sizing
+       */
+      flexSize: {
+        type: Boolean,
+        value: false
       }
     },
 
     observers: [
       '_setColor(color.length)',
-      '_setHeight(height)',
       '_setMargin(margin.top, margin.right, margin.bottom, margin.left)',
       '_setNoData(noData)',
       '_setWidth(width)',
+      '_setHeight(height)',
       '_setShowLabels(showLabels)',
       '_setShowLegend(showLegend)',
       '_setUseInteractiveGuideline(useInteractiveGuideline)',
       '_setGrowOnHover(growOnHover)',
       '_setDisableTooltip(disableTooltip)'
     ],
+
+    listeners: {
+      'iron-resize': '_onResize'
+    },
+
+    /**
+     * Listener for iron-resize
+     */
+    _onResize: function () {
+      if (this.autoResize) {
+        this.debounce('autoResize', function () {
+          this.refresh();
+        }.bind(this), 200);
+      }
+    },
 
     /**
      * Observer for setting color.
@@ -154,6 +204,12 @@
         this._chart.margin({
           "left": marginLeft
         });
+      }
+    },
+
+    getViewBox: function (width, extraWidth, height, flexSize) {
+      if (flexSize) {
+        return '0 0 ' + (width + extraWidth) + ' ' + height;
       }
     },
 
@@ -209,6 +265,25 @@
     },
 
     /**
+     * Observer for data changed
+     */
+    _dataChanged: function () {
+      if (this._chart) {
+        d3.select(this.svg).datum(this.data);
+        this.refresh();
+      }
+    },
+
+    /**
+     * Updates the chart
+     */
+    refresh: function () {
+      if (this._chart.update) {
+        this._chart.update();
+      }
+    },
+
+    /**
      * Generate and attach the chart;
      */
     generateChart: function() {
@@ -223,14 +298,15 @@
           .datum(data)
           .call(chart);
 
-        if (autoResize) {
-          nv.utils.windowResize(chart.update);
+        if (that.flexSize) {
+          d3.select(svg)
+            .attr('width', that.viewBoxWidth + that.extraViewBoxWidth)
+            .attr('height', that.viewBoxHeight);
         }
 
         that._set_tooltipId(chart.tooltip.id());
         return chart;
       });
-
     },
 
     ready: function() {
@@ -250,4 +326,8 @@
       }
     }
   };
+  NVD3.ChartBehavior = [
+    NVD3.ChartBehaviorImpl,
+    Polymer.IronResizableBehavior
+  ];
 </script>

@@ -48,7 +48,7 @@ Data Format:
   <template>
     <!-- We need to put svg tag inside a div to set correct margins -->
     <div>
-      <svg></svg>
+      <svg viewBox$="{{ getViewBox(viewBoxWidth, extraViewBoxWidth, viewBoxHeight, flexSize) }}"></svg>
     </div>
   </template>
 
@@ -201,6 +201,9 @@ Data Format:
         this._chart.pie.dispatch.on('elementClick', this._onSliceClick.bind(this));
       },
 
+      /**
+       * Listener for elementClick
+       */
       _onSliceClick: function(item) {
         var previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
         if (this.multiSelection) {
@@ -232,6 +235,14 @@ Data Format:
       */
       _selectionChanged: function() {
         this.fire('slice-selected', this.selection);
+      },
+
+      attached: function () {
+        if (this.flexSize) {
+          this._chart
+            .height(this.viewBoxHeight)
+            .width(this.viewBoxWidth);
+        }
       }
     });
   </script>
