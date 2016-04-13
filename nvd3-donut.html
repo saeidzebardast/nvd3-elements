@@ -234,7 +234,9 @@ Data Format:
       * Observer for selection
       */
       _selectionChanged: function() {
-        this.fire('slice-selected', this.selection);
+        if (this.selection) {
+          this.fire('slice-selected', this.selection);
+        }
       },
 
       attached: function () {
