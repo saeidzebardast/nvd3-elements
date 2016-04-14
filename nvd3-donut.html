@@ -152,7 +152,6 @@ Data Format:
         */
         selection: {
           type: Object,
-          value: null,
           notify: true
         },
 
@@ -161,7 +160,6 @@ Data Format:
         */
         multiSelection: {
           type: Boolean,
-          value: false,
           observer: '_multiSelectionChanged'
         }
       },
@@ -234,9 +232,7 @@ Data Format:
       * Observer for selection
       */
       _selectionChanged: function() {
-        if (this.selection) {
           this.fire('slice-selected', this.selection);
-        }
       },
 
       attached: function () {
