@@ -152,7 +152,6 @@ Data Format:
         */
         selection: {
           type: Object,
-          value: null,
           notify: true
         },
 
@@ -161,7 +160,6 @@ Data Format:
         */
         multiSelection: {
           type: Boolean,
-          value: false,
           observer: '_multiSelectionChanged'
         }
       },
@@ -209,17 +207,17 @@ Data Format:
         if (this.multiSelection) {
           if (this.selection.indexOf(item.data) > -1) {
             this.splice('selection', this.selection.indexOf(item.data), 1);
-            item.element.classList.remove('selected')
+            item.element.classList.remove('selected');
           } else {
             this.push('selection', item.data);
-            item.element.classList.add('selected')
+            item.element.classList.add('selected');
           }
         } else {
           this.selection = item.data;
           if (previousElement !== null) {
             previousElement.classList.remove('selected');
           }
-          item.element.classList.add('selected')
+          item.element.classList.add('selected');
         }
       },
 
@@ -227,14 +225,29 @@ Data Format:
       * Observer for multiSelection
       */
       _multiSelectionChanged: function(newValue, oldValue) {
-        this.selection = newValue ? [] : null;
+        if (newValue) {
+          if (this.selection === undefined) {
+            this.selection = [];
+          } else if (!(this.selection instanceof Array)) {
+            this.selection = [this.selection];
+          }
+        } else {
+          if (this.selection instanceof Array) {
+            var selectedSlices = this.svg.querySelectorAll('.nv-slice.selected'),
+              i;
+            for (i = 0; i < selectedSlices.length; i += 1) {
+              selectedSlices[i].classList.remove('selected');
+            }
+            this.selection = [];
+          }
+        }
       },
 
       /**
       * Observer for selection
       */
       _selectionChanged: function() {
-        this.fire('slice-selected', this.selection);
+          this.fire('slice-selected', this.selection);
       },
 
       attached: function () {
