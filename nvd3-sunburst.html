@@ -109,6 +109,16 @@ Data Format:
           value: function() {
             return  nv.models.sunburstChart();
           }
+        },
+        mode: {
+          type: String,
+          value: 'count',
+          observer: 'modeChanged'
+        }
+      },
+      modeChanged: function (newvalue) {
+        if (this._chart) {
+          this._chart.mode(newvalue);
         }
       }
     });
