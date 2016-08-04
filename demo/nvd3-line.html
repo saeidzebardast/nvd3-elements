@@ -12,15 +12,20 @@
 
 <body unresolved>
 
-  <p>An example of
-    <code>&lt;nvd3-line&gt;</code>:</p>
+<h1>Examples of
+    <code>&lt;nvd3-line&gt;</code></h1>
 
-  <nvd3-line height="150" show-legend use-interactive-guideline auto-resize no-data="No Data Available!">
+<h2>Simple chart</h2>
+<nvd3-line id="chart-1" height="300" show-legend use-interactive-guideline auto-resize no-data="No Data Available!">
+</nvd3-line>
 
-  </nvd3-line>
+<h2>Chart with custom X Axis labels</h2>
+<nvd3-line id="chart-2" height="300" show-legend use-interactive-guideline auto-resize no-data="No Data Available!">
+</nvd3-line>
 
-  <script>
-    var el = document.querySelector('nvd3-line');
+<script>
+    var el;
+    el = document.querySelector('#chart-1');
 
     el.data = [{
       "values": [{
@@ -631,7 +636,52 @@
       "key": "Cosine Wave",
       "color": "#2ca02c"
     }];
-  </script>
+
+
+    el = document.querySelector('#chart-2');
+
+    el.data = [{
+        "values": [{
+            "x": 0,
+            "y": 0
+        }, {
+            "x": 1,
+            "y": 3
+        }, {
+            "x": 2,
+            "y": 2
+        }, {
+            "x": 3,
+            "y": 5
+        }],
+        "key": "Line 1",
+        "color": "#ff7f0e"
+    }, {
+        "values": [{
+            "x": 0,
+            "y": 1
+        }, {
+            "x": 1,
+            "y": 4
+        }, {
+            "x": 2,
+            "y": 2
+        }, {
+            "x": 3,
+            "y": 3
+        }],
+        "key": "Line 2",
+        "color": "#2ca02c"
+    }];
+
+    el.xAxisLabels = {
+        "0": "Label 0",
+        "1": "Label 1",
+        "2": "Label 2",
+        "3": "Label 3",
+        "4": "Label 4"
+    }
+</script>
 
 </body>
 

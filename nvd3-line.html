@@ -66,6 +66,18 @@ Data Format:
 ]
 ```
 
+Custom X axis labels:
+```
+{
+  "0": "Label 0",
+  "1": "Label 1",
+  "2": "Label 2",
+  "3": "Label 3",
+  "4": "Label 4"
+}
+```
+
+
 @group NVD3 Elements
 @element nvd3-line
 @demo demo/nvd3-line.html
@@ -109,8 +121,41 @@ Data Format:
         useInteractiveGuideline: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * Custom Labels for x axis.
+         * e.g. {
+         *     "0": "Label 0",
+         *     "1": "Label 1",
+         *     "2": "Label 2",
+         *     "3": "Label 3",
+         *     "4": "Label 4"
+         *   }
+         */
+        xAxisLabels: {
+          type: Object,
+          value: {},
+          observer: '_xAxisLabelsChanged'
         }
-      }
+      },
+
+      /**
+       * Check if custom labels is set and update tickFormat of x axis.
+       *
+       * @private
+         */
+      _xAxisLabelsChanged: function() {
+          var xAxisLabels = this.xAxisLabels;
+
+          this._chart.xAxis.tickFormat(function(d) {
+            if (xAxisLabels.hasOwnProperty(d)) {
+              return xAxisLabels[d];
+            } else {
+              return d;
+            }
+          });
+        }
     });
   </script>
 </dom-module>
