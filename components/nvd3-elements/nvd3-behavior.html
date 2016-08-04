@@ -1,0 +1,333 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="nvd3-import.html">
+
+<style is="custom-style" include="nvd3-shared-styles"></style>
+
+<script>
+  var NVD3 = NVD3 || {};
+
+  /**
+   * @polymerBehavior NVD3.ChartBehavior
+   */
+  NVD3.ChartBehaviorImpl = {
+    properties: {
+      /*
+       * Data
+       */
+      data: {
+        type: Array,
+        value: [],
+        observer: '_dataChanged'
+      },
+
+      /*
+       * SVG object for d3
+       */
+      svg: {
+        type: Object
+      },
+
+      /**
+       * Stop auto drawing the chart on attaching the element.
+       */
+      stopAutoDrawing: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Auto resize chart after resizing browser window.
+       */
+      autoResize: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Colors to use for the different data.
+       * If an array is given, it is converted to a function automatically.
+       */
+      color: {
+        type: Array,
+        value: function() {
+          nv.utils.defaultColor();
+        }
+      },
+
+      /**
+       * The height the graph or component created inside the SVG should be made.
+       * Default: The height of the container element (normally the svg itself).
+       */
+      height: {
+        type: Number
+      },
+
+      /**
+       * Object containing the margins for the chart or component.
+       * You can specify only certain margins in the object to change just
+       * those parts.
+       */
+      margin: {
+        type: Object,
+        value: {
+          "left": null,
+          "right": null,
+          "top": null,
+          "bottom": null
+        }
+      },
+
+      /**
+       * Message to display if no data is provided.
+       */
+      noData: {
+        type: String
+      },
+
+      /**
+       * The width the graph or component created inside the SVG should be made.
+       * Default: The width of the container element (normally the svg itself).
+       */
+      width: {
+        type: Number
+      },
+
+      /**
+       * View box height
+       */
+      viewBoxHeight: {
+        type: Number,
+        value: 100
+      },
+
+      /**
+       * View box width
+       */
+      viewBoxWidth: {
+        type: Number,
+        value: 100
+      },
+
+      /**
+       * Extra width for view box so labels don't get cut off
+       */
+      extraViewBoxWidth: {
+        type: Number,
+        value: 50
+      },
+
+      /**
+       * Holds the id for the tooltip so it can be removed when chart is detached/removed from DOM.
+       */
+      _tooltipId: {
+        type: String,
+        readOnly: true
+      },
+
+      /**
+       * Make use of viewBox for sizing
+       */
+      flexSize: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    observers: [
+      '_setColor(color.length)',
+      '_setMargin(margin.top, margin.right, margin.bottom, margin.left)',
+      '_setNoData(noData)',
+      '_setWidth(width)',
+      '_setHeight(height)',
+      '_setShowLabels(showLabels)',
+      '_setShowLegend(showLegend)',
+      '_setUseInteractiveGuideline(useInteractiveGuideline)',
+      '_setGrowOnHover(growOnHover)',
+      '_setDisableTooltip(disableTooltip)'
+    ],
+
+    listeners: {
+      'iron-resize': '_onResize'
+    },
+
+    /**
+     * Listener for iron-resize
+     */
+    _onResize: function () {
+      if (this.autoResize) {
+        this.debounce('autoResize', function () {
+          this.refresh();
+        }.bind(this), 200);
+      }
+    },
+
+    /**
+     * Observer for setting color.
+     */
+    _setColor: function(colorLength) {
+      this._chart.color(this.color);
+    },
+
+    /**
+     * Observer for setting height.
+     */
+    _setHeight: function(height) {
+      if (typeof height === 'number' && height > 0) {
+        this.$$('div').style.height = height + 'px';
+      }
+    },
+
+    /**
+     * Observer for setting margins.
+     */
+    _setMargin: function(marginTop, marginRight, marginBottom, marginLeft) {
+      if (marginTop) {
+        this._chart.margin({
+          "top": marginTop
+        });
+      }
+
+      if (marginRight) {
+        this._chart.margin({
+          "right": marginRight
+        });
+      }
+
+      if (marginBottom) {
+        this._chart.margin({
+          "bottom": marginBottom
+        });
+      }
+
+      if (marginLeft) {
+        this._chart.margin({
+          "left": marginLeft
+        });
+      }
+    },
+
+    getViewBox: function (width, extraWidth, height, flexSize) {
+      if (flexSize) {
+        return '0 0 ' + (width + extraWidth) + ' ' + height;
+      }
+    },
+
+    /**
+     * Observer for setting text of no data.
+     */
+    _setNoData: function(noData) {
+      this._chart.noData(noData);
+    },
+
+    /**
+     * Observer for setting show labels.
+     */
+    _setShowLabels: function(showLabels) {
+      this._chart.showLabels(showLabels);
+    },
+
+    /**
+     * Observer for setting show legend.
+     */
+    _setShowLegend: function(showLegend) {
+      this._chart.showLegend(showLegend);
+    },
+
+    /**
+     * Observer for setting width.
+     */
+    _setWidth: function(width) {
+      if (typeof width === 'number' && width > 0) {
+        this.$$('div').style.width = width + 'px';
+      }
+    },
+
+    /**
+     * Observer for setting use interactive guideline.
+     */
+    _setUseInteractiveGuideline: function(useInteractiveGuideline) {
+      this._chart.useInteractiveGuideline(this.useInteractiveGuideline);
+    },
+
+    /**
+     * Observer for growOnHover.
+     */
+    _setGrowOnHover: function(growOnHover) {
+      this._chart.growOnHover(this.growOnHover);
+    },
+
+    /**
+     * Observer for disableTooltip
+     */
+    _setDisableTooltip: function(disableTooltip) {
+      this._chart.tooltip.enabled(!disableTooltip);
+    },
+
+    /**
+     * Observer for data changed
+     */
+    _dataChanged: function () {
+      if (this._chart) {
+        d3.select(this.svg).datum(this.data);
+        this.refresh();
+      }
+    },
+
+    /**
+     * Updates the chart
+     */
+    refresh: function () {
+      if (this._chart.update) {
+        this._chart.update();
+      }
+    },
+
+    /**
+     * Generate and attach the chart;
+     */
+    generateChart: function() {
+      var chart = this._chart;
+      var data = this.data;
+      var svg = this.svg;
+      var autoResize = this.autoResize;
+      var that = this;
+
+      nv.addGraph(function() {
+        d3.select(svg)
+          .datum(data)
+          .call(chart);
+
+        if (that.flexSize) {
+          d3.select(svg)
+            .attr('width', that.viewBoxWidth + that.extraViewBoxWidth)
+            .attr('height', that.viewBoxHeight);
+        }
+
+        that._set_tooltipId(chart.tooltip.id());
+        return chart;
+      });
+    },
+
+    ready: function() {
+      this.set('svg', this.$$('svg'));
+    },
+
+    attached: function() {
+      if (!this.stopAutoDrawing) {
+        this.generateChart();
+      }
+    },
+
+    detached: function() {
+      var tooltip = document.getElementById(this._tooltipId);
+      if (tooltip) {
+        tooltip.remove();
+      }
+    }
+  };
+  NVD3.ChartBehavior = [
+    NVD3.ChartBehaviorImpl,
+    Polymer.IronResizableBehavior
+  ];
+</script>

@@ -1,0 +1,109 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create multi bar horizontal chart using nvd3.
+
+Example:
+
+    <nvd3-multi-bar-horizontal
+    data="[[data]]"
+    height="100"
+    width="400"
+    auto-resize
+    show-legend></nvd3-multi-bar-horizontal>
+
+Data Format:
+```
+    [{
+      "key": "Series1",
+      "color": "#d62728",
+      "values": [{
+        "label": "Group A",
+        "value": -1.8746444827653
+      }, {
+        "label": "Group B",
+        "value": -8.0961543492239
+      }, {
+        "label": "Group C",
+        "value": -0.57072943117674
+      }]
+    }, {
+      "key": "Series2",
+      "color": "#1f77b4",
+      "values": [{
+        "label": "Group A",
+        "value": 25.307646510375
+      }, {
+        "label": "Group B",
+        "value": 16.756779544553
+      }, {
+        "label": "Group C",
+        "value": 18.451534877007
+      }]
+    }]
+```
+
+@group NVD3 Elements
+@element nvd3-multi-bar-horizontal
+@demo demo/nvd3-multi-bar-horizontal.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-multi-bar-horizontal">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-multi-bar-horizontal',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            var that = this;
+            return nv.models.multiBarHorizontalChart()
+              .x(function(d) {
+                return d[that.xProp];
+              })
+              .y(function(d) {
+                return d[that.yProp];
+              });
+          }
+        },
+
+        /**
+         * Configurable x-axis property key
+         */
+        xProp: {
+          type: String,
+          value: 'label'
+        },
+
+        /**
+         * Configurable y-axis property key
+         */
+        yProp: {
+          type: String,
+          value: 'value'
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        }
+      }
+    });
+  </script>
+</dom-module>

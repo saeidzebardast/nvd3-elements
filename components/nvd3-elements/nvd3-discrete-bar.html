@@ -1,0 +1,93 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create discrete bar chart using nvd3.
+
+Example:
+
+    <nvd3-discrete-bar
+      data="[[data]]"
+      height="100"
+      width="400"
+      auto-resize>
+    </nvd3-discrete-bar>
+
+Data Format:
+```
+[
+  {
+    key: "Cumulative Return",
+    values: [
+      {
+        "label" : "A" ,
+        "value" : -29.765957771107
+      } ,
+      {
+        "label" : "B" ,
+        "value" : 0
+      } ,
+      {
+        "label" : "C" ,
+        "value" : 32.807804682612
+      }
+    ]
+  }
+]
+```
+
+@group NVD3 Elements
+@element nvd3-discrete-bar
+@demo demo/nvd3-discrete-bar.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-discrete-bar">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-discrete-bar',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            var that = this;
+            return  nv.models.discreteBarChart()
+              .x(function(d) {
+                return d[that.xProp];
+              })
+              .y(function(d) {
+                return d[that.yProp];
+              });
+          }
+        },
+
+        /**
+         * Configurable x-axis property key
+         */
+        xProp: {
+          type: String,
+          value: 'label'
+        },
+
+        /**
+         * Configurable y-axis property key
+         */
+        yProp: {
+          type: String,
+          value: 'value'
+        },
+      }
+    });
+  </script>
+</dom-module>

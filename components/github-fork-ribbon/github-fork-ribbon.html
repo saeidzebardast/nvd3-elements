@@ -1,0 +1,209 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Simple Polymer element to add a GitHub fork me ribbon.
+
+Usage:
+
+    <github-fork-ribbon
+      username="GitHub username"
+      repository="GitHub repository name"
+      position="right|right-bottom|left-bottom|left"
+      label="Fork me"
+      background-color="Background color of ribbon">
+    </github-fork-ribbon>
+
+Example:
+
+    <github-fork-ribbon
+      username="saeidzebardast"
+      repository="nvd3-elements"
+      position="right"
+      label="Fork me"
+      background-color="#a00">
+    </github-fork-ribbon>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="github-fork-ribbon">
+  <template>
+    <style>
+      /*!
+       * "Fork me on GitHub" CSS ribbon v0.1.1 | MIT License
+       * https://github.com/simonwhitaker/github-fork-ribbon-css.
+       * I just rename classes.
+      */
+
+      /* Left will inherit from right (so we don't need to duplicate code) */
+
+      .ribbon {
+        /* The right and left classes determine the side we attach our banner to */
+        position: absolute;
+        /* Add a bit of padding to give some substance outside the "stitching" */
+        padding: 2px 0;
+        /* Set a gradient: transparent black at the top to almost-transparent black at the bottom */
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        /* Add a drop shadow */
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+        /* Set the font */
+        font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        z-index: 9999;
+        pointer-events: auto;
+      }
+
+      .ribbon a,
+      .ribbon a:hover {
+        /* Set the text properties */
+        color: #fff;
+        text-decoration: none;
+        text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        /* Set the geometry. If you fiddle with these you'll also need
+     to tweak the top and right values in .ribbon. */
+        width: 200px;
+        line-height: 20px;
+        /* Set the layout properties */
+        display: inline-block;
+        padding: 2px 0;
+        /* Add "stitching" effect */
+        border-width: 1px 0;
+        border-style: dotted;
+        border-color: #fff;
+        border-color: rgba(255, 255, 255, 0.7);
+      }
+
+      .wrapper {
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .wrapper.fixed {
+        position: fixed;
+      }
+
+      .wrapper.left {
+        left: 0;
+      }
+
+      .wrapper.right {
+        right: 0;
+      }
+
+      .wrapper.left-bottom {
+        position: fixed;
+        top: inherit;
+        bottom: 0;
+        left: 0;
+      }
+
+      .wrapper.right-bottom {
+        position: fixed;
+        top: inherit;
+        bottom: 0;
+        right: 0;
+      }
+
+      .wrapper.right .ribbon {
+        top: 42px;
+        right: -43px;
+        transform: rotate(45deg);
+      }
+
+      .wrapper.left .ribbon {
+        top: 42px;
+        left: -43px;
+        transform: rotate(-45deg);
+      }
+
+      .wrapper.left-bottom .ribbon {
+        top: 80px;
+        left: -43px;
+        transform: rotate(45deg);
+      }
+
+      .wrapper.right-bottom .ribbon {
+        top: 80px;
+        right: -43px;
+        transform: rotate(-45deg);
+      }
+    </style>
+
+    <div class$="wrapper [[position]]">
+      <div class="ribbon" style$="background-color: [[backgroundColor]]">
+        <a href$="[[repositoryURL]]">[[label]]</a>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'github-fork-ribbon',
+
+      properties: {
+        /**
+         *GitHub username
+         */
+        username: String,
+
+        /**
+         *GitHub repository name
+         */
+        repository: String,
+
+        /**
+         * GitHub repository url. It is computed property.
+         */
+        repositoryURL: {
+          type: String,
+          computed: '_computeRepositoryURL(username, repository)'
+        },
+
+        /**
+         * Position of ribbon.
+         * Accept: right, right-bottom, left-bottom, left.
+         */
+        position: {
+          type: String,
+          value: 'right'
+        },
+
+        /**
+         * Label of ribbon.
+         */
+        label: {
+          type: String,
+          value: 'Fork me on GitHub'
+        },
+
+        /**
+        * Background color of ribbon.
+        */
+        backgroundColor: {
+          type: String,
+          value: '#a00'
+        }
+      },
+
+      _computeRepositoryURL: function(username, repository) {
+        return "https://github.com/" + username + "/" + repository;
+      }
+    });
+  </script>
+</dom-module>

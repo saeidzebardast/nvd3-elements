@@ -1,0 +1,218 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create pie chart using nvd3.
+
+Example:
+
+    <nvd3-pie
+    data="[[data]]"
+    height="100"
+    width="400"
+    auto-resize
+    show-legend></nvd3-pie>
+
+Data Format:
+```
+[
+  {
+    "label": "label 1",
+    "value": 69
+  },
+  {
+    "label": "label 2",
+    "value": 85
+  }
+]
+```
+
+@group NVD3 Elements
+@element nvd3-pie
+@demo demo/nvd3-pie.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-pie">
+  <template>
+  <style>
+    /* Can't reach svgs children without ::content  */
+    :host ::content svg .nv-slice {
+      transform: scale(1);
+      transition: 0.1s ease-in-out;
+    }
+    :host ::content svg .nv-slice.selected {
+      transform: scale(1.1);
+    }
+  </style>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-pie',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            var that = this;
+            return nv.models.pieChart()
+              .x(function(d) {
+                return d[that.xProp];
+              })
+              .y(function(d) {
+                return d[that.yProp];
+              });
+          }
+        },
+
+        /**
+         * Configurable x-axis property key
+         */
+        xProp: {
+          type: String,
+          value: 'label'
+        },
+
+        /**
+         * Configurable y-axis property key
+         */
+        yProp: {
+          type: String,
+          value: 'value'
+        },
+
+        /**
+         * Show pie chart labels for each slice
+         */
+        showLabels: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Whether to increase slice radius on hover or not
+         */
+        growOnHover: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Disable the tooltip
+         */
+        disableTooltip: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Whether the labels should be outside of pie
+         */
+        labelsOutside: {
+          type: Boolean,
+          value: false,
+          observer: '_labelsOutsideChanged'
+        },
+
+        /**
+        * Container for selected slices
+        */
+        selection: {
+          type: Object,
+          notify: true
+        },
+
+        /**
+        * Whether possible to selected several slices
+        */
+        multiSelection: {
+          type: Boolean,
+          observer: '_multiSelectionChanged'
+        }
+      },
+      /**
+      * Fired when a slice is selected
+      * @event slice-selected
+      */
+
+      observers: [
+        '_selectionChanged(selection.splices)'
+      ],
+
+      ready: function() {
+        this._chart.pie.dispatch.on('elementClick', this._onSliceClick.bind(this));
+      },
+
+      /**
+       * Observer for labelsOutside
+       */
+      _labelsOutsideChanged: function () {
+        this._chart.labelsOutside(this.labelsOutside);
+      },
+
+      _onSliceClick: function(item) {
+        var previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
+        if (this.multiSelection) {
+          if (this.selection.indexOf(item.data) > -1) {
+            this.splice('selection', this.selection.indexOf(item.data), 1);
+            item.element.classList.remove('selected');
+          } else {
+            this.push('selection', item.data);
+            item.element.classList.add('selected');
+          }
+        } else {
+          this.selection = item.data;
+          if (previousElement !== null) {
+            previousElement.classList.remove('selected');
+          }
+          item.element.classList.add('selected');
+        }
+      },
+
+      /**
+      * Observer for multiSelection
+      */
+      _multiSelectionChanged: function(newValue, oldValue) {
+        if (newValue) {
+          if (this.selection === undefined) {
+            this.selection = [];
+          } else if (!(this.selection instanceof Array)) {
+            this.selection = [this.selection];
+          }
+        } else {
+          if (this.selection instanceof Array) {
+            var selectedSlices = this.svg.querySelectorAll('.nv-slice.selected'),
+              i;
+            for (i = 0; i < selectedSlices.length; i += 1) {
+              selectedSlices[i].classList.remove('selected');
+            }
+            this.selection = [];
+          }
+        }
+      },
+
+      /**
+      * Observer for selection
+      */
+      _selectionChanged: function() {
+        this.fire('slice-selected', this.selection);
+      }
+    });
+  </script>
+</dom-module>

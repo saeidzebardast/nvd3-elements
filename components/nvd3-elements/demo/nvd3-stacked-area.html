@@ -1,0 +1,180 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>nvd3-stacked-area Demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../nvd3-stacked-area.html">
+</head>
+
+<body unresolved>
+
+  <h1>Examples of
+    <code>&lt;nvd3-stacked-area&gt;</code>:</h1>
+
+  <h2>Simple chart</h2>
+  <nvd3-stacked-area id="chart-1" height="300" auto-resize show-legend use-interactive-guideline>
+  </nvd3-stacked-area>
+
+  <h2>Chart with custom X Axis labels</h2>
+  <nvd3-stacked-area id="chart-2" height="300" auto-resize show-legend use-interactive-guideline>
+  </nvd3-stacked-area>
+
+  <script>
+    var el = document.querySelector('#chart-1');
+    el.data = [{
+        "key": "North America",
+        "values": [
+          [1, 23.041422681023],
+          [2, 19.854291255832],
+          [3, 21.02286281168],
+          [4, 22.093608385173]
+        ]
+      },
+
+      {
+        "key": "Africa",
+        "values": [
+          [1, 7.9356392949025],
+          [2, 7.4514668527298],
+          [3, 7.9085410566608],
+          [4, 5.8996782364764]
+        ]
+      },
+
+      {
+        "key": "South America",
+        "values": [
+          [1, 7.9149900245423],
+          [2, 7.0899888751059],
+          [3, 7.5996132380614],
+          [4, 8.2741174301034]
+        ]
+      },
+
+      {
+        "key": "Asia",
+        "values": [
+          [1, 13.153938631352],
+          [2, 12.456410521864],
+          [3, 12.537048663919],
+          [4, 13.947386398309]
+        ]
+      },
+
+      {
+        "key": "Europe",
+        "values": [
+          [1, 9.3433263069351],
+          [2, 8.4583069475546],
+          [3, 8.0342398154196],
+          [4, 8.1538966876572]
+        ]
+      },
+
+      {
+        "key": "Australia",
+        "values": [
+          [1, 5.1162447683392],
+          [2, 4.2022848306513],
+          [3, 4.3543715758736],
+          [4, 5.4641223667245]
+        ]
+      },
+
+      {
+        "key": "Antarctica",
+        "values": [
+          [1, 1.3503144674343],
+          [2, 1.2232741112434],
+          [3, 1.3930470790784],
+          [4, 1.2631275030593]
+        ]
+      }
+    ];
+
+    el = document.querySelector('#chart-2');
+    el.data = [{
+        "key": "North America",
+        "values": [
+          [1, 23.041422681023],
+          [2, 19.854291255832],
+          [3, 21.02286281168],
+          [4, 22.093608385173]
+        ]
+      },
+
+      {
+        "key": "Africa",
+        "values": [
+          [1, 7.9356392949025],
+          [2, 7.4514668527298],
+          [3, 7.9085410566608],
+          [4, 5.8996782364764]
+        ]
+      },
+
+      {
+        "key": "South America",
+        "values": [
+          [1, 7.9149900245423],
+          [2, 7.0899888751059],
+          [3, 7.5996132380614],
+          [4, 8.2741174301034]
+        ]
+      },
+
+      {
+        "key": "Asia",
+        "values": [
+          [1, 13.153938631352],
+          [2, 12.456410521864],
+          [3, 12.537048663919],
+          [4, 13.947386398309]
+        ]
+      },
+
+      {
+        "key": "Europe",
+        "values": [
+          [1, 9.3433263069351],
+          [2, 8.4583069475546],
+          [3, 8.0342398154196],
+          [4, 8.1538966876572]
+        ]
+      },
+
+      {
+        "key": "Australia",
+        "values": [
+          [1, 5.1162447683392],
+          [2, 4.2022848306513],
+          [3, 4.3543715758736],
+          [4, 5.4641223667245]
+        ]
+      },
+
+      {
+        "key": "Antarctica",
+        "values": [
+          [1, 1.3503144674343],
+          [2, 1.2232741112434],
+          [3, 1.3930470790784],
+          [4, 1.2631275030593]
+        ]
+      }
+    ];
+
+    el.xAxisLabels = {
+      "1": "Q 1",
+      "2": "Q 2",
+      "3": "Q 3",
+      "4": "Q 4"
+    }
+  </script>
+</body>
+
+</html>

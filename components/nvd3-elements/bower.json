@@ -1,0 +1,40 @@
+{
+  "name": "nvd3-elements",
+  "version": "0.18.0",
+  "homepage": "https://github.com/saeidzebardast/nvd3-elements",
+  "authors": [
+    "Saeid Zebardast <saeid.zebardast@gmail.com>"
+  ],
+  "description": "NVD3 charts elements for Polymer.",
+  "main": "nvd3-elements.html",
+  "moduleType": [],
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "nvd3",
+    "d3",
+    "chart",
+    "graph"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "nvd3": "~1.8.1",
+    "polymer": "^1.2.0",
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^1.0.3"
+  },
+  "devDependencies": {
+    "github-fork-ribbon": "^0.2.3",
+    "iron-component-page": "PolymerElements/iron-component-page#~1.1.4",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.1.5"
+  }
+}

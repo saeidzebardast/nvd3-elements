@@ -1,0 +1,139 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create stacked area chart using nvd3.
+
+Example:
+
+    <nvd3-stacked-area
+    data="[[data]]"
+    height="100"
+    width="400"
+    auto-resize
+    show-legend
+    use-interactive-guideline></nvd3-stacked-area>
+
+Data Format:
+```
+[
+  {
+    "key": "North America",
+    "values": [
+      [1, 23.041422681023],
+      [2, 19.854291255832],
+      [3, 21.02286281168],
+      [4, 22.093608385173]
+    ]
+  },
+
+  {
+    "key": "Africa",
+    "values": [
+      [1, 7.9356392949025],
+      [2, 7.4514668527298],
+      [3, 7.9085410566608],
+      [4, 5.8996782364764]
+    ]
+  },
+
+  {
+    "key": "South America",
+    "values": [
+      [1, 7.9149900245423],
+      [2, 7.0899888751059],
+      [3, 7.5996132380614],
+      [4, 8.2741174301034]
+    ]
+  }
+]
+```
+
+@group NVD3 Elements
+@element nvd3-stacked-area
+@demo demo/nvd3-stacked-area.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-stacked-area">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-stacked-area',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            return nv.models.stackedAreaChart()
+              .x(function(d) {
+                return d[0]
+              })
+              .y(function(d) {
+                return d[1]
+              });
+          }
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Sets the chart to use a guideline and floating tooltip instead of
+         * requiring the user to hover over specific hotspots.
+         */
+        useInteractiveGuideline: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Custom Labels for x axis.
+         * e.g. {
+         *     "0": "Label 0",
+         *     "1": "Label 1",
+         *     "2": "Label 2",
+         *     "3": "Label 3",
+         *     "4": "Label 4"
+         *   }
+         */
+        xAxisLabels: {
+          type: Object,
+          value: {},
+          observer: '_xAxisLabelsChanged'
+        }
+      },
+
+      /**
+       * Check if custom labels is set and update tickFormat of x axis.
+       *
+       * @private
+       */
+      _xAxisLabelsChanged: function() {
+        var xAxisLabels = this.xAxisLabels;
+
+        this._chart.xAxis.tickFormat(function(d) {
+          if (xAxisLabels.hasOwnProperty(d)) {
+            return xAxisLabels[d];
+          } else {
+            return d;
+          }
+        });
+      }
+    });
+  </script>
+</dom-module>

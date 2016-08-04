@@ -1,0 +1,84 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="nvd3-behavior.html">
+
+<!--
+An element to create scatter chart using nvd3.
+
+Example:
+
+    <nvd3-scatter data="[[data]]" auto-resize></nvd3-scatter>
+
+Data Format:
+
+```
+[
+  {
+    "key": "Group One",
+    "values": [
+      {
+        "x": 10,
+        "y": 20,
+        "size": 69
+      }, {
+        "x": 15,
+        "y": 19,
+        "size": 85
+      }
+    ]
+  },
+  {
+    "key": "Group Two",
+    "values": [
+      {
+        "x": 14,
+        "y": 17,
+        "size": 85
+      }, {
+        "x": 33,
+        "y": 12,
+        "size": 69
+      }
+    ]
+  }
+]
+```
+@group NVD3 Elements
+@element nvd3-scatter
+@demo demo/nvd3-scatter.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-scatter">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-scatter',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        _chart: {
+          type: Object,
+          value: function() {
+            return nv.models.scatterChart();
+          }
+        },
+
+        /**
+         * Whether to display the legend or not
+         */
+        showLegend: {
+          type: Boolean,
+          value: false
+        }
+      }
+    });
+  </script>
+</dom-module>
