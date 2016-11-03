@@ -35,20 +35,20 @@ Data Format:
 -->
 
 <dom-module id="nvd3-donut">
-  <style>
+  <style include="nvd3-shared-styles">
     /* Can't reach svgs children without ::content  */
-    :host ::content svg .nv-slice {
+    #svg ::content .nv-slice {
       transform: scale(1);
       transition: 0.1s ease-in-out;
     }
-    :host ::content svg .nv-slice.selected {
+    #svg ::content .nv-slice.selected {
       transform: scale(1.1);
     }
   </style>
   <template>
     <!-- We need to put svg tag inside a div to set correct margins -->
     <div>
-      <svg viewBox$="{{ getViewBox(viewBoxWidth, extraViewBoxWidth, viewBoxHeight, flexSize) }}"></svg>
+      <svg id="svg" viewBox$="{{ getViewBox(viewBoxWidth, extraViewBoxWidth, viewBoxHeight, flexSize) }}"></svg>
     </div>
   </template>
 
