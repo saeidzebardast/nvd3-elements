@@ -35,16 +35,15 @@ Data Format:
 
 <dom-module id="nvd3-pie">
   <template>
-  <style include="nvd3-shared-styles">
-    /* Can't reach svgs children without ::content  */
-    #svg ::content svg .nv-slice {
-      transform: scale(1);
-      transition: 0.1s ease-in-out;
-    }
-    #svg ::content svg .nv-slice.selected {
-      transform: scale(1.1);
-    }
-  </style>
+    <style include="nvd3-shared-styles">
+      #svg .nv-slice {
+        transform: scale(1);
+        transition: 0.1s ease-in-out;
+      }
+      #svg .nv-slice.selected {
+        transform: scale(1.1);
+      }
+    </style>
     <!-- We need to put svg tag inside a div to set correct margins -->
     <div>
       <svg id="svg"></svg>

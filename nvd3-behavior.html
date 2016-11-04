@@ -311,6 +311,7 @@
 
     ready: function() {
       this.set('svg', this.$$('svg'));
+      this.scopeSubtree(this.$.svg, true);
     },
 
     attached: function() {

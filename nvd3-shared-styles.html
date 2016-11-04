@@ -5,278 +5,278 @@
     <style>
       /* nvd3 version 1.8.1 (https://github.com/novus/nvd3) 2015-06-15 */
 
-      #svg ::content .nvd3 .nv-axis {
+      #svg .nvd3 .nv-axis {
         pointer-events: none;
         opacity: 1;
       }
 
-      #svg ::content .nvd3 .nv-axis path {
+      #svg .nvd3 .nv-axis path {
         fill: none;
         stroke: #000;
         stroke-opacity: .75;
         shape-rendering: crispEdges;
       }
 
-      #svg ::content .nvd3 .nv-axis path.domain {
+      #svg .nvd3 .nv-axis path.domain {
         stroke-opacity: .75;
       }
 
-      #svg ::content .nvd3 .nv-axis.nv-x path.domain {
+      #svg .nvd3 .nv-axis.nv-x path.domain {
         stroke-opacity: 0;
       }
 
-      #svg ::content .nvd3 .nv-axis line {
+      #svg .nvd3 .nv-axis line {
         fill: none;
         stroke: #e5e5e5;
         shape-rendering: crispEdges;
       }
 
-      #svg ::content .nvd3 .nv-axis .zero line,
+      #svg .nvd3 .nv-axis .zero line,
       /*this selector may not be necessary*/
 
-      #svg ::content .nvd3 .nv-axis line.zero {
+      #svg .nvd3 .nv-axis line.zero {
         stroke-opacity: .75;
       }
 
-      #svg ::content .nvd3 .nv-axis .nv-axisMaxMin text {
+      #svg .nvd3 .nv-axis .nv-axisMaxMin text {
         font-weight: bold;
       }
 
-      #svg ::content .nvd3 .x .nv-axis .nv-axisMaxMin text,
-      #svg ::content .nvd3 .x2 .nv-axis .nv-axisMaxMin text,
-      #svg ::content .nvd3 .x3 .nv-axis .nv-axisMaxMin text {
+      #svg .nvd3 .x .nv-axis .nv-axisMaxMin text,
+      #svg .nvd3 .x2 .nv-axis .nv-axisMaxMin text,
+      #svg .nvd3 .x3 .nv-axis .nv-axisMaxMin text {
         text-anchor: middle
       }
 
-      #svg ::content .nvd3 .nv-axis.nv-disabled {
+      #svg .nvd3 .nv-axis.nv-disabled {
         opacity: 0;
       }
 
-      #svg ::content .nvd3 .nv-bars rect {
+      #svg .nvd3 .nv-bars rect {
         fill-opacity: .75;
         transition: fill-opacity 250ms linear;
         -moz-transition: fill-opacity 250ms linear;
         -webkit-transition: fill-opacity 250ms linear;
       }
 
-      #svg ::content .nvd3 .nv-bars rect.hover {
+      #svg .nvd3 .nv-bars rect.hover {
         fill-opacity: 1;
       }
 
-      #svg ::content .nvd3 .nv-bars .hover rect {
+      #svg .nvd3 .nv-bars .hover rect {
         fill: lightblue;
       }
 
-      #svg ::content .nvd3 .nv-bars text {
+      #svg .nvd3 .nv-bars text {
         fill: rgba(0, 0, 0, 0);
       }
 
-      #svg ::content .nvd3 .nv-bars .hover text {
+      #svg .nvd3 .nv-bars .hover text {
         fill: rgba(0, 0, 0, 1);
       }
 
-      #svg ::content .nvd3 .nv-multibar .nv-groups rect,
-      #svg ::content .nvd3 .nv-multibarHorizontal .nv-groups rect,
-      #svg ::content .nvd3 .nv-discretebar .nv-groups rect {
+      #svg .nvd3 .nv-multibar .nv-groups rect,
+      #svg .nvd3 .nv-multibarHorizontal .nv-groups rect,
+      #svg .nvd3 .nv-discretebar .nv-groups rect {
         stroke-opacity: 0;
         transition: fill-opacity 250ms linear;
         -moz-transition: fill-opacity 250ms linear;
         -webkit-transition: fill-opacity 250ms linear;
       }
 
-      #svg ::content .nvd3 .nv-multibar .nv-groups rect:hover,
-      #svg ::content .nvd3 .nv-multibarHorizontal .nv-groups rect:hover,
-      #svg ::content .nvd3 .nv-candlestickBar .nv-ticks rect:hover,
-      #svg ::content .nvd3 .nv-discretebar .nv-groups rect:hover {
+      #svg .nvd3 .nv-multibar .nv-groups rect:hover,
+      #svg .nvd3 .nv-multibarHorizontal .nv-groups rect:hover,
+      #svg .nvd3 .nv-candlestickBar .nv-ticks rect:hover,
+      #svg .nvd3 .nv-discretebar .nv-groups rect:hover {
         fill-opacity: 1;
       }
 
-      #svg ::content .nvd3 .nv-discretebar .nv-groups text,
-      #svg ::content .nvd3 .nv-multibarHorizontal .nv-groups text {
+      #svg .nvd3 .nv-discretebar .nv-groups text,
+      #svg .nvd3 .nv-multibarHorizontal .nv-groups text {
         font-weight: bold;
         fill: rgba(0, 0, 0, 1);
         stroke: rgba(0, 0, 0, 0);
       }
       /* boxplot CSS */
 
-      #svg ::content .nvd3 .nv-boxplot circle {
+      #svg .nvd3 .nv-boxplot circle {
         fill-opacity: 0.5;
       }
 
-      #svg ::content .nvd3 .nv-boxplot circle:hover {
+      #svg .nvd3 .nv-boxplot circle:hover {
         fill-opacity: 1;
       }
 
-      #svg ::content .nvd3 .nv-boxplot rect:hover {
+      #svg .nvd3 .nv-boxplot rect:hover {
         fill-opacity: 1;
       }
 
-      #svg ::content .nvd3 line.nv-boxplot-median {
+      #svg .nvd3 line.nv-boxplot-median {
         stroke: black;
       }
 
-      #svg ::content .nv-boxplot-tick:hover {
+      #svg .nv-boxplot-tick:hover {
         stroke-width: 2.5px;
       }
       /* bullet */
 
-      #svg ::content .nvd3.nv-bullet {
+      #svg .nvd3.nv-bullet {
         font: 10px sans-serif;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-measure {
+      #svg .nvd3.nv-bullet .nv-measure {
         fill-opacity: .8;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-measure:hover {
+      #svg .nvd3.nv-bullet .nv-measure:hover {
         fill-opacity: 1;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-marker {
+      #svg .nvd3.nv-bullet .nv-marker {
         stroke: #000;
         stroke-width: 2px;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-markerTriangle {
+      #svg .nvd3.nv-bullet .nv-markerTriangle {
         stroke: #000;
         fill: #fff;
         stroke-width: 1.5px;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-tick line {
+      #svg .nvd3.nv-bullet .nv-tick line {
         stroke: #666;
         stroke-width: .5px;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-range.nv-s0 {
+      #svg .nvd3.nv-bullet .nv-range.nv-s0 {
         fill: #eee;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-range.nv-s1 {
+      #svg .nvd3.nv-bullet .nv-range.nv-s1 {
         fill: #ddd;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-range.nv-s2 {
+      #svg .nvd3.nv-bullet .nv-range.nv-s2 {
         fill: #ccc;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-title {
+      #svg .nvd3.nv-bullet .nv-title {
         font-size: 14px;
         font-weight: bold;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-subtitle {
+      #svg .nvd3.nv-bullet .nv-subtitle {
         fill: #999;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-range {
+      #svg .nvd3.nv-bullet .nv-range {
         fill: #bababa;
         fill-opacity: .4;
       }
 
-      #svg ::content .nvd3.nv-bullet .nv-range:hover {
+      #svg .nvd3.nv-bullet .nv-range:hover {
         fill-opacity: .7;
       }
 
-      #svg ::content .nvd3.nv-candlestickBar .nv-ticks .nv-tick {
+      #svg .nvd3.nv-candlestickBar .nv-ticks .nv-tick {
         stroke-width: 1px;
       }
 
-      #svg ::content .nvd3.nv-candlestickBar .nv-ticks .nv-tick.hover {
+      #svg .nvd3.nv-candlestickBar .nv-ticks .nv-tick.hover {
         stroke-width: 2px;
       }
 
-      #svg ::content .nvd3.nv-candlestickBar .nv-ticks .nv-tick.positive rect {
+      #svg .nvd3.nv-candlestickBar .nv-ticks .nv-tick.positive rect {
         stroke: #2ca02c;
         fill: #2ca02c;
       }
 
-      #svg ::content .nvd3.nv-candlestickBar .nv-ticks .nv-tick.negative rect {
+      #svg .nvd3.nv-candlestickBar .nv-ticks .nv-tick.negative rect {
         stroke: #d62728;
         fill: #d62728;
       }
 
-      #svg ::content .with-transitions .nv-candlestickBar .nv-ticks .nv-tick {
+      #svg .with-transitions .nv-candlestickBar .nv-ticks .nv-tick {
         transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
         -moz-transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
         -webkit-transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
       }
 
-      #svg ::content .nvd3.nv-candlestickBar .nv-ticks line {
+      #svg .nvd3.nv-candlestickBar .nv-ticks line {
         stroke: #333;
       }
 
-      #svg ::content .nvd3 .nv-legend .nv-disabled rect {
+      #svg .nvd3 .nv-legend .nv-disabled rect {
         /*fill-opacity: 0;*/
       }
 
-      #svg ::content .nvd3 .nv-check-box .nv-box {
+      #svg .nvd3 .nv-check-box .nv-box {
         fill-opacity: 0;
         stroke-width: 2;
       }
 
-      #svg ::content .nvd3 .nv-check-box .nv-check {
+      #svg .nvd3 .nv-check-box .nv-check {
         fill-opacity: 0;
         stroke-width: 4;
       }
 
-      #svg ::content .nvd3 .nv-series.nv-disabled .nv-check-box .nv-check {
+      #svg .nvd3 .nv-series.nv-disabled .nv-check-box .nv-check {
         fill-opacity: 0;
         stroke-opacity: 0;
       }
 
-      #svg ::content .nvd3 .nv-controlsWrap .nv-legend .nv-check-box .nv-check {
+      #svg .nvd3 .nv-controlsWrap .nv-legend .nv-check-box .nv-check {
         opacity: 0;
       }
       /* line plus bar */
 
-      #svg ::content .nvd3.nv-linePlusBar .nv-bar rect {
+      #svg .nvd3.nv-linePlusBar .nv-bar rect {
         fill-opacity: .75;
       }
 
-      #svg ::content .nvd3.nv-linePlusBar .nv-bar rect:hover {
+      #svg .nvd3.nv-linePlusBar .nv-bar rect:hover {
         fill-opacity: 1;
       }
 
-      #svg ::content .nvd3 .nv-groups path.nv-line {
+      #svg .nvd3 .nv-groups path.nv-line {
         fill: none;
       }
 
-      #svg ::content .nvd3 .nv-groups path.nv-area {
+      #svg .nvd3 .nv-groups path.nv-area {
         stroke: none;
       }
 
-      #svg ::content .nvd3.nv-line .nvd3.nv-scatter .nv-groups .nv-point {
+      #svg .nvd3.nv-line .nvd3.nv-scatter .nv-groups .nv-point {
         fill-opacity: 0;
         stroke-opacity: 0;
       }
 
-      #svg ::content .nvd3.nv-scatter.nv-single-point .nv-groups .nv-point {
+      #svg .nvd3.nv-scatter.nv-single-point .nv-groups .nv-point {
         fill-opacity: .5 !important;
         stroke-opacity: .5 !important;
       }
 
-      #svg ::content .with-transitions .nvd3 .nv-groups .nv-point {
+      #svg .with-transitions .nvd3 .nv-groups .nv-point {
         transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
         -moz-transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
         -webkit-transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
       }
 
-      #svg ::content .nvd3.nv-scatter .nv-groups .nv-point.hover,
-      #svg ::content .nvd3 .nv-groups .nv-point.hover {
+      #svg .nvd3.nv-scatter .nv-groups .nv-point.hover,
+      #svg .nvd3 .nv-groups .nv-point.hover {
         stroke-width: 7px;
         fill-opacity: .95 !important;
         stroke-opacity: .95 !important;
       }
 
-      #svg ::content .nvd3 .nv-point-paths path {
+      #svg .nvd3 .nv-point-paths path {
         stroke: #aaa;
         stroke-opacity: 0;
         fill: #eee;
         fill-opacity: 0;
       }
 
-      #svg ::content .nvd3 .nv-indexLine {
+      #svg .nvd3 .nv-indexLine {
         cursor: ew-resize;
       }
       /********************
@@ -301,8 +301,8 @@
   Box shadow and border radius styling
 */
 
-      #svg ::content .nvtooltip.with-3d-shadow,
-      #svg ::content .with-3d-shadow .nvtooltip {
+      #svg .nvtooltip.with-3d-shadow,
+      #svg .with-3d-shadow .nvtooltip {
         -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
         -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
         box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
@@ -311,20 +311,20 @@
         border-radius: 5px;
       }
 
-      #svg ::content .nvd3 text {
+      #svg .nvd3 text {
         font: normal 12px Arial;
       }
 
-      #svg ::content .nvd3 .title {
+      #svg .nvd3 .title {
         font: bold 14px Arial;
       }
 
-      #svg ::content .nvd3 .nv-background {
+      #svg .nvd3 .nv-background {
         fill: white;
         fill-opacity: 0;
       }
 
-      #svg ::content .nvd3.nv-noData {
+      #svg .nvd3.nv-noData {
         font-size: 18px;
         font-weight: bold;
       }
@@ -332,12 +332,12 @@
 *  Brush
 */
 
-      #svg ::content .nv-brush .extent {
+      #svg .nv-brush .extent {
         fill-opacity: .125;
         shape-rendering: crispEdges;
       }
 
-      #svg ::content .nv-brush .resize path {
+      #svg .nv-brush .resize path {
         fill: #eee;
         stroke: #666;
       }
@@ -345,67 +345,67 @@
 *  Legend
 */
 
-      #svg ::content .nvd3 .nv-legend .nv-series {
+      #svg .nvd3 .nv-legend .nv-series {
         cursor: pointer;
       }
 
-      #svg ::content .nvd3 .nv-legend .nv-disabled circle {
+      #svg .nvd3 .nv-legend .nv-disabled circle {
         fill-opacity: 0;
       }
       /* focus */
 
-      #svg ::content .nvd3 .nv-brush .extent {
+      #svg .nvd3 .nv-brush .extent {
         fill-opacity: 0 !important;
       }
 
-      #svg ::content .nvd3 .nv-brushBackground rect {
+      #svg .nvd3 .nv-brushBackground rect {
         stroke: #000;
         stroke-width: .4;
         fill: #fff;
         fill-opacity: .7;
       }
 
-      #svg ::content .nvd3.nv-ohlcBar .nv-ticks .nv-tick {
+      #svg .nvd3.nv-ohlcBar .nv-ticks .nv-tick {
         stroke-width: 1px;
       }
 
-      #svg ::content .nvd3.nv-ohlcBar .nv-ticks .nv-tick.hover {
+      #svg .nvd3.nv-ohlcBar .nv-ticks .nv-tick.hover {
         stroke-width: 2px;
       }
 
-      #svg ::content .nvd3.nv-ohlcBar .nv-ticks .nv-tick.positive {
+      #svg .nvd3.nv-ohlcBar .nv-ticks .nv-tick.positive {
         stroke: #2ca02c;
       }
 
-      #svg ::content .nvd3.nv-ohlcBar .nv-ticks .nv-tick.negative {
+      #svg .nvd3.nv-ohlcBar .nv-ticks .nv-tick.negative {
         stroke: #d62728;
       }
 
-      #svg ::content .nvd3 .background path {
+      #svg .nvd3 .background path {
         fill: none;
         stroke: #EEE;
         stroke-opacity: .4;
         shape-rendering: crispEdges;
       }
 
-      #svg ::content .nvd3 .foreground path {
+      #svg .nvd3 .foreground path {
         fill: none;
         stroke-opacity: .7;
       }
 
-      #svg ::content .nvd3 .nv-parallelCoordinates-brush .extent {
+      #svg .nvd3 .nv-parallelCoordinates-brush .extent {
         fill: #fff;
         fill-opacity: .6;
         stroke: gray;
         shape-rendering: crispEdges;
       }
 
-      #svg ::content .nvd3 .nv-parallelCoordinates .hover {
+      #svg .nvd3 .nv-parallelCoordinates .hover {
         fill-opacity: 1;
         stroke-width: 3px;
       }
 
-      #svg ::content .nvd3 .missingValuesline line {
+      #svg .nvd3 .missingValuesline line {
         fill: none;
         stroke: black;
         stroke-width: 1;
@@ -413,113 +413,113 @@
         stroke-dasharray: 5, 5;
       }
 
-      #svg ::content .nvd3.nv-pie path {
+      #svg .nvd3.nv-pie path {
         stroke-opacity: 0;
         transition: fill-opacity 250ms linear, stroke-width 250ms linear, stroke-opacity 250ms linear;
         -moz-transition: fill-opacity 250ms linear, stroke-width 250ms linear, stroke-opacity 250ms linear;
         -webkit-transition: fill-opacity 250ms linear, stroke-width 250ms linear, stroke-opacity 250ms linear;
       }
 
-      #svg ::content .nvd3.nv-pie .nv-pie-title {
+      #svg .nvd3.nv-pie .nv-pie-title {
         font-size: 24px;
         fill: rgba(19, 196, 249, 0.59);
       }
 
-      #svg ::content .nvd3.nv-pie .nv-slice text {
+      #svg .nvd3.nv-pie .nv-slice text {
         stroke: #000;
         stroke-width: 0;
       }
 
-      #svg ::content .nvd3.nv-pie path {
+      #svg .nvd3.nv-pie path {
         stroke: #fff;
         stroke-width: 1px;
         stroke-opacity: 1;
       }
 
-      #svg ::content .nvd3.nv-pie .hover path {
+      #svg .nvd3.nv-pie .hover path {
         fill-opacity: .7;
       }
 
-      #svg ::content .nvd3.nv-pie .nv-label {
+      #svg .nvd3.nv-pie .nv-label {
         pointer-events: none;
       }
 
-      #svg ::content .nvd3.nv-pie .nv-label rect {
+      #svg .nvd3.nv-pie .nv-label rect {
         fill-opacity: 0;
         stroke-opacity: 0;
       }
       /* scatter */
 
-      #svg ::content .nvd3 .nv-groups .nv-point.hover {
+      #svg .nvd3 .nv-groups .nv-point.hover {
         stroke-width: 20px;
         stroke-opacity: .5;
       }
 
-      #svg ::content .nvd3 .nv-scatter .nv-point.hover {
+      #svg .nvd3 .nv-scatter .nv-point.hover {
         fill-opacity: 1;
       }
 
-      #svg ::content .nv-noninteractive {
+      #svg .nv-noninteractive {
         pointer-events: none;
       }
 
-      #svg ::content .nv-distx,
-      #svg ::content .nv-disty {
+      #svg .nv-distx,
+      #svg .nv-disty {
         pointer-events: none;
       }
       /* sparkline */
 
-      #svg ::content .nvd3.nv-sparkline path {
+      #svg .nvd3.nv-sparkline path {
         fill: none;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus g.nv-hoverValue {
+      #svg .nvd3.nv-sparklineplus g.nv-hoverValue {
         pointer-events: none;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus .nv-hoverValue line {
+      #svg .nvd3.nv-sparklineplus .nv-hoverValue line {
         stroke: #333;
         stroke-width: 1.5px;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus,
-      #svg ::content .nvd3.nv-sparklineplus g {
+      #svg .nvd3.nv-sparklineplus,
+      #svg .nvd3.nv-sparklineplus g {
         pointer-events: all;
       }
 
-      #svg ::content .nvd3 .nv-hoverArea {
+      #svg .nvd3 .nv-hoverArea {
         fill-opacity: 0;
         stroke-opacity: 0;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus .nv-xValue,
-      #svg ::content .nvd3.nv-sparklineplus .nv-yValue {
+      #svg .nvd3.nv-sparklineplus .nv-xValue,
+      #svg .nvd3.nv-sparklineplus .nv-yValue {
         stroke-width: 0;
         font-size: .9em;
         font-weight: normal;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus .nv-yValue {
+      #svg .nvd3.nv-sparklineplus .nv-yValue {
         stroke: #f66;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus .nv-maxValue {
+      #svg .nvd3.nv-sparklineplus .nv-maxValue {
         stroke: #2ca02c;
         fill: #2ca02c;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus .nv-minValue {
+      #svg .nvd3.nv-sparklineplus .nv-minValue {
         stroke: #d62728;
         fill: #d62728;
       }
 
-      #svg ::content .nvd3.nv-sparklineplus .nv-currentValue {
+      #svg .nvd3.nv-sparklineplus .nv-currentValue {
         font-weight: bold;
         font-size: 1.1em;
       }
       /* stacked area */
 
-      #svg ::content .nvd3.nv-stackedarea path.nv-area {
+      #svg .nvd3.nv-stackedarea path.nv-area {
         fill-opacity: .7;
         stroke-opacity: 0;
         transition: fill-opacity 250ms linear, stroke-opacity 250ms linear;
@@ -527,11 +527,11 @@
         -webkit-transition: fill-opacity 250ms linear, stroke-opacity 250ms linear;
       }
 
-      #svg ::content .nvd3.nv-stackedarea path.nv-area.hover {
+      #svg .nvd3.nv-stackedarea path.nv-area.hover {
         fill-opacity: .9;
       }
 
-      #svg ::content .nvd3.nv-stackedarea .nv-groups .nv-point {
+      #svg .nvd3.nv-stackedarea .nv-groups .nv-point {
         stroke-opacity: 0;
         fill-opacity: 0;
       }
@@ -540,11 +540,11 @@
 Interactive Layer
 */
 
-      #svg ::content .nvd3 .nv-interactiveGuideLine {
+      #svg .nvd3 .nv-interactiveGuideLine {
         pointer-events: none;
       }
 
-      #svg ::content .nvd3 line.nv-guideline {
+      #svg .nvd3 line.nv-guideline {
         stroke: #ccc;
       }
     </style>
