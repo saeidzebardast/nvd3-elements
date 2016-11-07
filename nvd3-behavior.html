@@ -148,7 +148,8 @@
     ],
 
     listeners: {
-      'iron-resize': '_onResize'
+      'iron-resize': '_onResize',
+      'transitionend': '_onTransitionEnd'
     },
 
     /**
@@ -160,6 +161,15 @@
           this.refresh();
         }.bind(this), 200);
       }
+    },
+
+    _onTransitionEnd: function (e) {
+      // Workaround when nvd3 elements are used inside an iron-collapse.
+      // Some nvd3-elemts use css transitions, for exemple to change opacity in
+      // pie when mouse is hover. 
+      // iron-collaspe react to transitionend events by firing an iron-resize,
+      // which cause the chart to repaint.
+      e.stopPropagation();
     },
 
     /**
