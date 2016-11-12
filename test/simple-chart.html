@@ -1,6 +1,17 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../nvd3-behavior.html">
 
+<!--
+  NVD3.ChartBehavior requires an element with id="svg" to scope CSS
+  when using shady DOM
+-->
+<dom-module id="simple-chart">
+  <template>
+    <div>
+      <svg id="svg"></svg>
+    </div>
+  </template>
+</dom-module>
 <script>
 
   Polymer({

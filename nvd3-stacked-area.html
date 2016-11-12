@@ -57,9 +57,11 @@ Data Format:
 
 <dom-module id="nvd3-stacked-area">
   <template>
+     <style include="nvd3-shared-styles">
+     </style>
     <!-- We need to put svg tag inside a div to set correct margins -->
     <div>
-      <svg></svg>
+      <svg id="svg"></svg>
     </div>
   </template>
 
