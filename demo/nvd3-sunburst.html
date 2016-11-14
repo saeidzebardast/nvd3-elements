@@ -7,22 +7,30 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>nvd3-sunburst Demo</title>
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
   <link rel="import" href="../nvd3-sunburst.html">
 </head>
 
 <body unresolved>
 
+  <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
   <p>An example of
     <code>&lt;nvd3-sunburst&gt;</code>:</p>
 
-  <nvd3-sunburst height="400" auto-resize>
+  <nvd3-sunburst height="400" auto-resize></nvd3-sunburst>
 
-  </nvd3-sunburst>
+  <div style="width: 100%">
+    <div class="horizontal layout flex center-center">
+      <nvd3-sunburst class="flex" flex-size title="My flex sunburst!" auto-resize show-labels>
+      </nvd3-sunburst>
+    </div>
+  </div>
 
   <script>
-    var el = document.querySelector('nvd3-sunburst');
+    var el = document.querySelectorAll('nvd3-sunburst');
 
-    el.data =   [{
+    el[0].data =   [{
             "name": "flare",
             "children": [
                 {
@@ -402,6 +410,7 @@
                 }
             ]
         }];
+    el[1].data = el[0].data;
   </script>
 
 </body>
