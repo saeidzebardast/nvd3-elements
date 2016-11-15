@@ -7,10 +7,13 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>nvd3-donut Demo</title>
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
   <link rel="import" href="../nvd3-donut.html">
 </head>
 
 <body unresolved>
+
+  <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
 
   <p>An example of
     <code>&lt;nvd3-donut&gt;</code>:</p>
@@ -18,9 +21,16 @@
   <nvd3-donut title="My Donut!" height="400" auto-resize show-labels show-legend donut-ratio="0.25" grow-on-hover labels-outside>
   </nvd3-donut>
 
+  <div style="width: 100%">
+    <div class="horizontal layout flex center-center">
+      <nvd3-donut class="flex" flex-size title="My flex Donut!" auto-resize show-labels show-legend grow-on-hover labels-outside>
+      </nvd3-donut>
+    </div>
+  </div>
+
   <script>
-    var el = document.querySelector('nvd3-donut');
-    el.data = [{
+    var el = document.querySelectorAll('nvd3-donut');
+    el[0].data = [{
       "label": "One",
       "value": 29.765957771107
     }, {
@@ -46,7 +56,9 @@
       "value": 5.1387322875705
     }];
 
-    el.addEventListener('slice-selected', function (e) {
+    el[1].data = el[0].data;
+
+    el[0].addEventListener('slice-selected', function (e) {
       console.log('slice-selected');
     });
   </script>

@@ -17,7 +17,9 @@
        */
       data: {
         type: Array,
-        value: [],
+        value: function () {
+          return [];
+        },
         observer: '_dataChanged'
       },
 
@@ -70,11 +72,13 @@
        */
       margin: {
         type: Object,
-        value: {
-          "left": null,
-          "right": null,
-          "top": null,
-          "bottom": null
+        value: function () {
+          return {
+            left: null,
+            right: null,
+            top: null,
+            bottom: null
+          };
         }
       },
 
@@ -217,12 +221,6 @@
       }
     },
 
-    getViewBox: function (width, extraWidth, height, flexSize) {
-      if (flexSize) {
-        return '0 0 ' + (width + extraWidth) + ' ' + height;
-      }
-    },
-
     /**
      * Observer for setting text of no data.
      */
@@ -297,30 +295,25 @@
      * Generate and attach the chart;
      */
     generateChart: function() {
-      var chart = this._chart;
-      var data = this.data;
-      var svg = this.svg;
-      var autoResize = this.autoResize;
-      var that = this;
-
       nv.addGraph(function() {
-        d3.select(svg)
-          .datum(data)
-          .call(chart);
+        d3.select(this.svg)
+          .datum(this.data)
+          .call(this._chart);
 
-        if (that.flexSize) {
-          d3.select(svg)
-            .attr('width', that.viewBoxWidth + that.extraViewBoxWidth)
-            .attr('height', that.viewBoxHeight);
+        if (this.flexSize) {
+          d3.select(this.svg)
+            .attr('width', this.viewBoxWidth + this.extraViewBoxWidth)
+            .attr('height', this.viewBoxHeight);
+          this._chart.update();
         }
 
-        that._set_tooltipId(chart.tooltip.id());
-        return chart;
-      });
+        this._set_tooltipId(this._chart.tooltip.id());
+        return this._chart;
+      }.bind(this));
     },
 
     ready: function() {
-      this.set('svg', this.$$('svg'));
+      this.set('svg', this.$.svg);
       this.scopeSubtree(this.$.svg, true);
     },
 
