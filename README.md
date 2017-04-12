@@ -27,6 +27,9 @@ bower install nvd3-elements
 ## Demo and Options
 See the [component page](http://saeidzebardast.github.io/nvd3-elements) for demo and options.
 
+## Events
+You could create listeners for all NVD3 events. Please check [NVD3 documentation](http://nvd3-community.github.io/nvd3/examples/documentation.html) for events list of each chart.
+
 ## License
 
 MIT © [Saeid Zebardast](http://zebardast.com)
