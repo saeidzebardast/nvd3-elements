@@ -1,4 +1,4 @@
-# nvd3-elements [![Build Status](https://travis-ci.org/saeidzebardast/nvd3-elements.svg?branch=master)](https://travis-ci.org/saeidzebardast/nvd3-elements)
+# nvd3-elements [![Build Status](https://travis-ci.org/saeidzebardast/nvd3-elements.svg?branch=master)](https://travis-ci.org/saeidzebardast/nvd3-elements) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/saeidzebardast/nvd3-elements)
 
 NVD3 charts as web components for Polymer.
 
