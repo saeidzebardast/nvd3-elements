@@ -48,6 +48,15 @@ Data Format:
           value: function() {
             return nv.models.bulletChart();
           }
+        },
+
+        /**
+         * NVD3 components which are used in this chart.
+         * It's required for binding events.
+         */
+        _components: {
+          type: Array,
+          value: ['bullet', 'tooltip']
         }
       }
     });

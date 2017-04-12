@@ -161,6 +161,15 @@ Data Format:
         multiSelection: {
           type: Boolean,
           observer: '_multiSelectionChanged'
+        },
+
+        /**
+         * NVD3 components which are used in this chart.
+         * It's required for binding events.
+         */
+        _components: {
+          type: Array,
+          value: ['legend', 'pie', 'tooltip']
         }
       },
       /**

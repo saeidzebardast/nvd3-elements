@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import"
+      href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="nvd3-import.html">
 
 <style is="custom-style" include="nvd3-shared-styles"></style>
@@ -17,7 +18,7 @@
        */
       data: {
         type: Array,
-        value: function () {
+        value: function() {
           return [];
         },
         observer: '_dataChanged'
@@ -72,7 +73,7 @@
        */
       margin: {
         type: Object,
-        value: function () {
+        value: function() {
           return {
             left: null,
             right: null,
@@ -159,15 +160,15 @@
     /**
      * Listener for iron-resize
      */
-    _onResize: function () {
+    _onResize: function() {
       if (this.autoResize) {
-        this.debounce('autoResize', function () {
+        this.debounce('autoResize', function() {
           this.refresh();
         }.bind(this), 200);
       }
     },
 
-    _onTransitionEnd: function (e) {
+    _onTransitionEnd: function(e) {
       // Workaround when nvd3 elements are used inside an iron-collapse.
       // Some nvd3-elemts use css transitions, for exemple to change opacity in
       // pie when mouse is hover. 
@@ -275,7 +276,7 @@
     /**
      * Observer for data changed
      */
-    _dataChanged: function () {
+    _dataChanged: function() {
       if (this._chart) {
         d3.select(this.svg).datum(this.data);
         this.refresh();
@@ -285,7 +286,7 @@
     /**
      * Updates the chart
      */
-    refresh: function () {
+    refresh: function() {
       if (this._chart.update) {
         this._chart.update();
       }
@@ -308,7 +309,54 @@
         }
 
         this._set_tooltipId(this._chart.tooltip.id());
+        this._bindEvents();
         return this._chart;
+      }.bind(this));
+    },
+
+    /**
+     * Bind NVD3 events of chart and its components to fire custom events
+     * @private
+     */
+    _bindEvents: function() {
+      let componentsEvents = {};
+
+      this._components.forEach(function(component) {
+        if (this._chart[component].dispatch) {
+          componentsEvents[component] = Object.keys(this._chart[component].dispatch);
+        }
+      }.bind(this));
+
+      Object.keys(this._chart.dispatch).forEach(function(event) {
+        this._bindChartEvent(event);
+      }.bind(this));
+
+      Object.keys(componentsEvents).forEach(function(component) {
+        componentsEvents[component].forEach(function(eventName) {
+          this._bindComponentEvent(component, eventName);
+        }.bind(this));
+      }.bind(this));
+    },
+
+
+    /**
+     * Bind NVD3 events of chart to fire custom events
+     * @private
+     */
+    _bindChartEvent: function(eventName) {
+      this._chart.dispatch.on(eventName, function(e) {
+        this.fire(eventName, e);
+      }.bind(this));
+    },
+
+
+    /**
+     * Bind NVD3 events of chart's components to fire custom events
+     * @private
+     */
+    _bindComponentEvent: function(component, eventName) {
+      this._chart[component].dispatch.on(eventName, function(e) {
+        this.fire(eventName, e);
       }.bind(this));
     },
 

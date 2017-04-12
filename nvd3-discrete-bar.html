@@ -88,6 +88,15 @@ Data Format:
           type: String,
           value: 'value'
         },
+
+        /**
+         * NVD3 components which are used in this chart.
+         * It's required for binding events.
+         */
+        _components: {
+          type: Array,
+          value: ['discretebar', 'legend', 'xAxis', 'yAxis', 'tooltip']
+        }
       }
     });
   </script>

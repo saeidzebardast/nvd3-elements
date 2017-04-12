@@ -115,9 +115,18 @@ Data Format:
           type: String,
           value: 'count',
           observer: 'modeChanged'
+        },
+
+        /**
+         * NVD3 components which are used in this chart.
+         * It's required for binding events.
+         */
+        _components: {
+          type: Array,
+          value: ['sunburst', 'tooltip']
         }
       },
-      modeChanged: function (newvalue) {
+      modeChanged: function(newvalue) {
         if (this._chart) {
           this._chart.mode(newvalue);
         }

@@ -103,6 +103,15 @@ Data Format:
         showLegend: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * NVD3 components which are used in this chart.
+         * It's required for binding events.
+         */
+        _components: {
+          type: Array,
+          value: ['multibar', 'legend', 'controls', 'xAxis', 'yAxis', 'tooltip']
         }
       }
     });

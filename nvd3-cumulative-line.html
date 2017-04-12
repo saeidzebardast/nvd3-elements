@@ -126,6 +126,15 @@ Data Format:
           type: Object,
           value: {},
           observer: '_xAxisLabelsChanged'
+        },
+
+        /**
+         * NVD3 components which are used in this chart.
+         * It's required for binding events.
+         */
+        _components: {
+          type: Array,
+          value: ['lines', 'legend', 'controls', 'xAxis', 'yAxis', 'tooltip']
         }
       },
 
