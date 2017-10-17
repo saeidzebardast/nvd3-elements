@@ -182,9 +182,9 @@ Data Format:
         '_selectionChanged(selection.splices)'
       ],
 
-	  listeners: {
-		  'elementClick': '_onSliceClick'
-	  },
+      listeners: {
+        'elementClick': '_onSliceClick'
+      },
 
       /**
        * Observer for setting donut ratio.
@@ -211,7 +211,7 @@ Data Format:
        */
       _onSliceClick: function(event) {
         var item = event.detail,
-			previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
+          previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
         if (this.multiSelection) {
           if (this.selection.indexOf(item.data) > -1) {
             this.splice('selection', this.selection.indexOf(item.data), 1);
