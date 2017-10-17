@@ -45,7 +45,6 @@ Data Format:
       #svg .nv-slice.selected {
         transform: scale(1.1);
       }
-
     </style>
     <!-- We need to put svg tag inside a div to set correct margins -->
     <div>
@@ -183,6 +182,10 @@ Data Format:
         '_selectionChanged(selection.splices)'
       ],
 
+	  listeners: {
+		  'elementClick': '_onSliceClick'
+	  },
+
       /**
        * Observer for setting donut ratio.
        */
@@ -203,16 +206,12 @@ Data Format:
       _labelsOutsideChanged: function () {
         this._chart.labelsOutside(this.labelsOutside);
       },
-
-      ready: function() {
-        this._chart.pie.dispatch.on('elementClick', this._onSliceClick.bind(this));
-      },
-
       /**
        * Listener for elementClick
        */
-      _onSliceClick: function(item) {
-        var previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
+      _onSliceClick: function(event) {
+        var item = event.detail,
+			previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
         if (this.multiSelection) {
           if (this.selection.indexOf(item.data) > -1) {
             this.splice('selection', this.selection.indexOf(item.data), 1);
