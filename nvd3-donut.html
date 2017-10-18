@@ -210,8 +210,9 @@ Data Format:
        * Listener for elementClick
        */
       _onSliceClick: function(event) {
-        var item = event.detail,
-          previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
+        var item = event.detail;
+        var previousElement = item.element.parentElement.querySelector('.nv-slice.selected');
+          
         if (this.multiSelection) {
           if (this.selection.indexOf(item.data) > -1) {
             this.splice('selection', this.selection.indexOf(item.data), 1);
@@ -255,7 +256,7 @@ Data Format:
       * Observer for selection
       */
       _selectionChanged: function() {
-          this.fire('slice-selected', this.selection);
+        this.fire('slice-selected', this.selection);
       }
     });
   </script>
