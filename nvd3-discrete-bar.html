@@ -2,47 +2,89 @@
 <link rel="import" href="nvd3-behavior.html">
 
 <!--
-An element to create discrete bar chart using nvd3.
+An element to create line chart using nvd3.
 
 Example:
 
-    <nvd3-discrete-bar
+    <nvd3-line
       data="[[data]]"
       height="100"
       width="400"
-      auto-resize>
-    </nvd3-discrete-bar>
+      auto-resize
+      show-legend
+      use-interactive-guideline>
+    </nvd3-line>
 
 Data Format:
 ```
 [
   {
-    key: "Cumulative Return",
-    values: [
-      {
-        "label" : "A" ,
-        "value" : -29.765957771107
-      } ,
-      {
-        "label" : "B" ,
-        "value" : 0
-      } ,
-      {
-        "label" : "C" ,
-        "value" : 32.807804682612
-      }
-    ]
+    "key": "Sine Wave",
+    "color": "#ff7f0e",
+    "values": [{
+      "x": 0,
+      "y": 0
+    }, {
+      "x": 1,
+      "y": 0.09983341664682815
+    }, {
+      "x": 2,
+      "y": 0.19866933079506122
+    }, {
+      "x": 3,
+      "y": 0.29552020666133955
+    }, {
+      "x": 4,
+      "y": 0.3894183423086505
+    }, {
+      "x": 5,
+      "y": 0.479425538604203
+    }]
+  }, {
+    "key": "Cosine Wave",
+    "color": "#2ca02c",
+    "values": [{
+      "x": 0,
+      "y": 0.5
+    }, {
+      "x": 1,
+      "y": 0.49750208263901285
+    }, {
+      "x": 2,
+      "y": 0.4900332889206208
+    }, {
+      "x": 3,
+      "y": 0.477668244562803
+    }, {
+      "x": 4,
+      "y": 0.46053049700144255
+    }, {
+      "x": 5,
+      "y": 0.4387912809451864
+    }]
   }
 ]
 ```
 
+Custom X axis labels:
+```
+{
+  "0": "Label 0",
+  "1": "Label 1",
+  "2": "Label 2",
+  "3": "Label 3",
+  "4": "Label 4"
+}
+```
+
+
 @group NVD3 Elements
-@element nvd3-discrete-bar
-@demo demo/nvd3-discrete-bar.html
+@element nvd3-line
+@demo demo/nvd3-line.html
 @hero hero.svg
 -->
 
-<dom-module id="nvd3-discrete-bar">
+<dom-module id="nvd3-line">
   <template>
     <style include="nvd3-shared-styles"></style>
     <!-- We need to put svg tag inside a div to set correct margins -->
@@ -53,7 +95,7 @@ Data Format:
 
   <script>
     Polymer({
-      is: 'nvd3-discrete-bar',
+      is: 'nvd3-line',
       behaviors: [NVD3.ChartBehavior],
       properties: {
         /**
@@ -61,32 +103,41 @@ Data Format:
          */
         _chart: {
           type: Object,
-          value: function() {
-            var that = this;
-            return  nv.models.discreteBarChart()
-              .x(function(d) {
-                return d[that.xProp];
-              })
-              .y(function(d) {
-                return d[that.yProp];
-              });
+          value: function () {
+            return nv.models.lineChart();
           }
         },
-
         /**
-         * Configurable x-axis property key
+         * Whether to display the legend or not
          */
-        xProp: {
-          type: String,
-          value: 'label'
+        showLegend: {
+          type: Boolean,
+          value: false
         },
 
         /**
-         * Configurable y-axis property key
+         * Sets the chart to use a guideline and floating tooltip instead of
+         * requiring the user to hover over specific hotspots.
          */
-        yProp: {
-          type: String,
-          value: 'value'
+        useInteractiveGuideline: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Custom Labels for x axis.
+         * e.g. {
+         *     "0": "Label 0",
+         *     "1": "Label 1",
+         *     "2": "Label 2",
+         *     "3": "Label 3",
+         *     "4": "Label 4"
+         *   }
+         */
+        xAxisLabels: {
+          type: Object,
+          value: {},
+          observer: '_xAxisLabelsChanged'
         },
 
         /**
@@ -95,7 +146,64 @@ Data Format:
          */
         _components: {
           type: Array,
-          value: ['discretebar', 'legend', 'xAxis', 'yAxis', 'tooltip']
+          value: ['lines', 'legend', 'focus', 'xAxis', 'x2Axis', 'yAxis', 'y2Axis', 'tooltip']
+        },
+
+        /**
+        * Display or hide the X axis
+        */
+        showXAxis: {
+          type: Boolean,
+          value: true,
+          observer: '_showXAxis'
+        },
+
+        /**
+        * Display or hide the Y axis
+        */
+        showYAxis: {
+          type: Boolean,
+          value: true,
+          observer: '_showYAxis'
+        }
+      },
+
+      /**
+       * Check if custom labels is set and update tickFormat of x axis.
+       *
+       * @private
+         */
+      _xAxisLabelsChanged: function () {
+        var xAxisLabels = this.xAxisLabels;
+
+        this._chart.xAxis.tickFormat(function (d) {
+          if (xAxisLabels.hasOwnProperty(d)) {
+            return xAxisLabels[d];
+          } else {
+            return d;
+          }
+        });
+      },
+
+      /**
+      * Observer for showXAxis will change this option on the chart
+      * @private
+      * @param {Boolean} showXAxis
+      */
+      _showXAxis: function (newValue) {
+        if (newValue !== undefined) {
+          this._chart.showXAxis(newValue);
+        }
+      },
+
+      /**
+      * Observer for showYAxis will change this option on the chart
+      * @private
+      * @param {Boolean} showYAxis
+      */
+      _showYAxis: function (newValue) {
+        if (newValue !== undefined) {
+          this._chart.showYAxis(newValue);
         }
       }
     });
