@@ -96,6 +96,46 @@ Data Format:
         _components: {
           type: Array,
           value: ['discretebar', 'legend', 'xAxis', 'yAxis', 'tooltip']
+        },
+
+        /**
+        * Display or hide the X axis
+        */
+        showXAxis: {
+          type: Boolean,
+          value: true,
+          observer: '_showXAxis'
+        },
+
+        /**
+        * Display or hide the Y axis
+        */
+        showYAxis: {
+          type: Boolean,
+          value: true,
+          observer: '_showYAxis'
+        }
+      },
+
+      /**
+      * Observer for showXAxis will change this option on the chart
+      * @private
+      * @param {Boolean} showXAxis
+      */
+      _showXAxis: function (newValue) {
+        if (newValue !== undefined) {
+          this._chart.showXAxis(newValue);
+        }
+      },
+
+      /**
+      * Observer for showYAxis will change this option on the chart
+      * @private
+      * @param {Boolean} showYAxis
+      */
+      _showYAxis: function (newValue) {
+        if (newValue !== undefined) {
+          this._chart.showYAxis(newValue);
         }
       }
     });
