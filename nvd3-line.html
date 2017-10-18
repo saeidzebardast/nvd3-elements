@@ -103,7 +103,7 @@ Custom X axis labels:
          */
         _chart: {
           type: Object,
-          value: function() {
+          value: function () {
             return nv.models.lineChart();
           }
         },
@@ -147,6 +147,24 @@ Custom X axis labels:
         _components: {
           type: Array,
           value: ['lines', 'legend', 'focus', 'xAxis', 'x2Axis', 'yAxis', 'y2Axis', 'tooltip']
+        },
+
+        /**
+        * Display or hide the X axis
+        */
+        showXAxis: {
+          type: Boolean,
+          value: true,
+          observer: '_showXAxis'
+        },
+
+        /**
+        * Display or hide the Y axis
+        */
+        showYAxis: {
+          type: Boolean,
+          value: true,
+          observer: '_showYAxis'
         }
       },
 
@@ -155,17 +173,39 @@ Custom X axis labels:
        *
        * @private
          */
-      _xAxisLabelsChanged: function() {
-          var xAxisLabels = this.xAxisLabels;
+      _xAxisLabelsChanged: function () {
+        var xAxisLabels = this.xAxisLabels;
 
-          this._chart.xAxis.tickFormat(function(d) {
-            if (xAxisLabels.hasOwnProperty(d)) {
-              return xAxisLabels[d];
-            } else {
-              return d;
-            }
-          });
+        this._chart.xAxis.tickFormat(function (d) {
+          if (xAxisLabels.hasOwnProperty(d)) {
+            return xAxisLabels[d];
+          } else {
+            return d;
+          }
+        });
+      },
+
+      /**
+      * Observer for showXAxis will change this option on the chart
+      * @private
+      * @param {Boolean} showXAxis
+      */
+      _showXAxis: function (newValue) {
+        if (newValue !== undefined) {
+          this._chart.showXAxis(newValue);
         }
+      },
+
+      /**
+      * Observer for showYAxis will change this option on the chart
+      * @private
+      * @param {Boolean} showYAxis
+      */
+      _showYAxis: function (newValue) {
+        if (newValue !== undefined) {
+          this._chart.showYAxis(newValue);
+        }
+      }
     });
   </script>
 </dom-module>
