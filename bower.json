@@ -35,7 +35,7 @@
     "iron-component-page": "PolymerElements/iron-component-page#latest",
     "web-component-tester": "latest",
     "webcomponentsjs": "webcomponents/webcomponentsjs#latest",
-    "iron-test-helpers": "PolymerElements/iron-test-helpers#latest5",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#latest",
     "iron-flex-layout": "polymerelements/iron-flex-layout#latest"
   }
 }
