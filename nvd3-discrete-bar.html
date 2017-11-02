@@ -102,8 +102,8 @@ Data Format:
         * Display or hide the X axis
         */
         showXAxis: {
-          type: Boolean,
-          value: true,
+          type: String,
+          value: 'true',
           observer: '_showXAxis'
         },
 
@@ -111,8 +111,8 @@ Data Format:
         * Display or hide the Y axis
         */
         showYAxis: {
-          type: Boolean,
-          value: true,
+          type: String,
+          value: 'true',
           observer: '_showYAxis'
         }
       },
@@ -124,7 +124,7 @@ Data Format:
       */
       _showXAxis: function (newValue) {
         if (newValue !== undefined) {
-          this._chart.showXAxis(newValue);
+          this._chart.showXAxis(newValue === 'true');
         }
       },
 
@@ -135,7 +135,7 @@ Data Format:
       */
       _showYAxis: function (newValue) {
         if (newValue !== undefined) {
-          this._chart.showYAxis(newValue);
+          this._chart.showYAxis(newValue === 'true');
         }
       }
     });

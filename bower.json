@@ -26,16 +26,16 @@
     "tests"
   ],
   "dependencies": {
-    "nvd3": "~1.8.1",
-    "polymer": "^1.7.0",
-    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^1.0.3"
+    "nvd3": "~1.8.6",
+    "polymer": "Polymer/polymer#latest",
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#latest"
   },
   "devDependencies": {
     "github-fork-ribbon": "^0.2.3",
-    "iron-component-page": "PolymerElements/iron-component-page#~1.1.4",
-    "web-component-tester": "^4.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
-    "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.1.5",
-    "iron-flex-layout": "polymerelements/iron-flex-layout#^1.3.1"
+    "iron-component-page": "PolymerElements/iron-component-page#latest",
+    "web-component-tester": "latest",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#latest",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#latest",
+    "iron-flex-layout": "polymerelements/iron-flex-layout#latest"
   }
 }
