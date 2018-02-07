@@ -10,9 +10,8 @@ addons:
     packages:
       - google-chrome-stable
 before_script:
-  - npm install web-component-tester
-  - npm install bower
+  - npm install polymer-cli
   - export PATH=$PWD/node_modules/.bin:$PATH
-  - bower install
+  - polymer install --variants
 script:
-  - xvfb-run wct --skip-plugin sauce
+  - xvfb-run polymer test
