@@ -50,12 +50,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       test('height is set', function() {
         myEl.set('height', 300);
-        assert.equal(myEl.querySelector('div').clientHeight, myEl.height);
+        assert.equal(Polymer.dom(myEl.root).querySelector('div').clientHeight, myEl.height);
       });
 
       test('width is set', function() {
         myEl.set('width', 400);
-        assert.equal(myEl.querySelector('div').clientWidth, myEl.width);
+        assert.equal(Polymer.dom(myEl.root).querySelector('div').clientWidth, myEl.width);
       });
 
       test('show legend is false', function() {
@@ -101,7 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         selectEl.addEventListener('slice-selected', function(e) {
           assert.isTrue(selectEl.data.indexOf(e.detail) > -1);
         });
-        MockInteractions.tap(selectEl.querySelector('g.nv-slice'));
+        MockInteractions.tap(Polymer.dom(selectEl.root).querySelector('g.nv-slice'));
       });
     });
   </script>

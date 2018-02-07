@@ -18,22 +18,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </head>
   <body>
     <script>
-      // Load and run all tests (.html, .js):
-      WCT.loadSuites([
-        'basic-nvd3-behavior.html',
-        'basic-nvd3-bullet.html',
-        'basic-nvd3-cumulative-line.html',
-        'basic-nvd3-discrete-bar.html',
-        'basic-nvd3-donut.html',
-        'basic-nvd3-line.html',
-        'basic-nvd3-line-with-focus.html',
-        'basic-nvd3-multi-bar-horizontal.html',
-        'basic-nvd3-multi-bar.html',
-        'basic-nvd3-pie.html',
-        'basic-nvd3-scatter.html',
-        'basic-nvd3-stacked-area.html',
-        'basic-nvd3-sunburst.html'
-      ]);
+      var pages = [
+          'basic-nvd3-behavior.html',
+          'basic-nvd3-bullet.html',
+          'basic-nvd3-cumulative-line.html',
+          'basic-nvd3-discrete-bar.html',
+          'basic-nvd3-donut.html',
+          'basic-nvd3-line.html',
+          'basic-nvd3-line-with-focus.html',
+          'basic-nvd3-multi-bar-horizontal.html',
+          'basic-nvd3-multi-bar.html',
+          'basic-nvd3-pie.html',
+          'basic-nvd3-scatter.html',
+          'basic-nvd3-stacked-area.html',
+          'basic-nvd3-sunburst.html'
+        ],
+        suites = [],
+        i;
+
+      for (i = 0; i < pages.length; i++) {
+        suites.push(pages[i] + '?dom=shadow');
+        suites.push(pages[i] + '?wc-shadydom=true&wc-ce=true');
+      }
+
+      WCT.loadSuites(suites);
     </script>
   </body>
 </html>
