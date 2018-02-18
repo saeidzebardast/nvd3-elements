@@ -18,9 +18,17 @@
 
     is: 'simple-chart',
 
+    properties: {
+      _chart: {
+        type: Object,
+        value: function() {
+          return nv.models.line();
+        }
+      }
+    },
     behaviors: [
       NVD3.ChartBehavior
-    ]
+    ],
 
   });
 
